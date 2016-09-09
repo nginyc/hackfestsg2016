@@ -1,10 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope) {
-
+.controller('AppCtrl', function ($scope, $accounts) {
+    
+    $scope.logout = function () {
+        $accounts.logout()
+        .then(function (user) {
+           //TODO: clear login details
+        });
+    }, function (reason) {
+        $ionicPopup.alert({
+            title: "Logout failed",
+            subTitle: reason,
+            okText: "Fine"
+        });
+    };
 })
 
-.controller('DashboardCtrl', function ($scope, $accounts) {
+.controller('HomeCtrl', function ($scope, $accounts) {
     $scope.user = $accounts.user;
 })
 
@@ -21,22 +33,6 @@ angular.module('starter.controllers', [])
         }, function (reason) {
             $ionicPopup.alert({
                 title: "Login failed",
-                subTitle: reason,
-                okText: "Fine"
-            });
-        });
-    };
-
-    $scope.logout = function () {
-        $accounts.logout()
-        .then(function (user) {
-            $ionicPopup.alert({
-                title: "Logout success",
-                okText: "Fine"
-            });
-        }, function (reason) {
-            $ionicPopup.alert({
-                title: "Logout failed",
                 subTitle: reason,
                 okText: "Fine"
             });
