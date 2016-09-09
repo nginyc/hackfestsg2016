@@ -1,61 +1,65 @@
 angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function ($scope, $accounts) {
+.controller('AppCtrl', function ($scope, $firebaseApp, $ionicPopup, $state) {
     
     $scope.logout = function () {
-        $accounts.logout()
-        .then(function (user) {
-           //TODO: clear login details
-        });
-    }, function (reason) {
-        $ionicPopup.alert({
-            title: "Logout failed",
-            subTitle: reason,
-            okText: "Fine"
-        });
+        try {
+            $firebaseApp.auth().signOut()
+            .then(function () {
+                $state.go('login');
+             }, function(error) {
+                throw error;
+            });
+        } catch (error) {
+            $ionicPopup.alert({
+                title: "Something went wrong",
+                subTitle: error
+            });
+        }
     };
 })
 
-.controller('HomeCtrl', function ($scope, $accounts) {
-    $scope.user = $accounts.user;
+.controller('HomeCtrl', function ($scope, $firebaseApp) {
+    $scope.user = $firebaseApp.auth().currentUser;
 })
 
-.controller('LoginCtrl', function ($scope, $accounts, $ionicPopup) {
+.controller('LoginCtrl', function ($scope, $firebaseApp, $ionicPopup, $state) {
     $scope.user = {};
 
     $scope.login = function () {
-        $accounts.login($scope.user.email, $scope.user.password)
-        .then(function (user) {
-            $ionicPopup.alert({
-                title: "Login success",
-                okText: "Fine"
+        try {
+            $firebaseApp.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password)
+            .then(function (user) {
+                $state.go('app.home');
+            }, function (error) {
+                throw error;
             });
-        }, function (reason) {
+        } catch (error) {
             $ionicPopup.alert({
-                title: "Login failed",
-                subTitle: reason,
-                okText: "Fine"
+                title: 'Login failed',
+                subTitle: error
             });
-        });
+        }
     };
 })
 
-.controller('SignupCtrl', function ($scope, $accounts, $ionicPopup) {
+.controller('SignupCtrl', function ($scope, $firebaseApp, $ionicPopup) {
     $scope.user = {};
 
     $scope.submit = function () {
-        $accounts.create($scope.user.email, $scope.user.password)
-        .then(function (user) {
-            $ionicPopup.alert({
-                title: "Sign up success",
-                okText: "Fine"
+        try {
+            $firebaseApp.auth().createUserWithEmailAndPassword($scope.user.email, $scope.user.password)
+            .then(function (user) {
+                $ionicPopup.alert({
+                    title: "Sign up success",
+                    okText: "Fine"
+                });
             });
-        }, function (reason) {
+        } catch (error) {
             $ionicPopup.alert({
                 title: "Sign up failed",
-                subTitle: reason,
-                okText: "Fine"
+                subTitle: error
             });
-        });
+        }
     };
 });

@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('$accounts', function () {
+.factory('$firebaseApp', function () {
 
     var config = {
         apiKey: "AIzaSyCb_5n7K-f1eq_Q5vJYfNJpxjlnJyJIlzs",
@@ -9,77 +9,7 @@ angular.module('starter.services', [])
         storageBucket: "hackfestsg.appspot.com"
     };
 
-    var firebaseApp = firebase.initializeApp(config);
-
-    var user = {
-        isLoggedIn: false,
-        email: ''
-    };
-
-    return {
-        user: user,
-        login: login,
-        logout: logout,
-        create: create
-    };
-
-    function login(email, password) {
-        return new Promise(function (resolve, reject) {
-            try {
-                firebaseApp.auth().signInWithEmailAndPassword(email, password)
-                .then(function (user) {
-                    updateUser();
-                    resolve(user);
-                }, function (error) {
-                    reject(error);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    function updateUser() {
-        var newUser = firebaseApp.auth().currentUser;
-        if (newUser == null) {
-            user.isLoggedIn = false; 
-        } else {
-            user.isLoggedIn = true;
-            user.email = newUser.email;
-        }
-    }
-
-    function create(email, password) {
-        return new Promise(function (resolve, reject) {
-            try {
-                firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-                .then(function (user) {
-                    updateUser();
-                    resolve(user);
-                }, function (error) {
-                    reject(error);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
-
-    function logout() {
-        return new Promise(function (resolve, reject) {
-            try {
-                firebaseApp.auth().signOut()
-                .then(function () {
-                    updateUser();
-                    resolve();
-                }, function (error) {
-                    reject(error);
-                });
-            } catch (error) {
-                reject(error);
-            }
-        });
-    }
+    return firebase.initializeApp(config);
 })
 
 .factory('$localStorage', function ($window) {
