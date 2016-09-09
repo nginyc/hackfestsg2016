@@ -1,0 +1,10 @@
+﻿<ion-view view-title="Dashboard">
+    <ion-content>
+        <div ng-show="!user.isLoggedIn" class="padding">
+           Login pls
+        </div>
+        <div ng-show="user.isLoggedIn" class="padding">
+            Welcome {{user.email}}!
+        </div>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,9 @@
+{
+  "name": "Hackfestsg",
+  "app_id": "",
+  "watchPatterns": [
+    "scss/ionic.app.scss",
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}
