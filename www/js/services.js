@@ -3,22 +3,56 @@ angular.module('starter.services', ['ngCordova'])
 .factory('$firebaseApp', function () {
 
     var config = {
-        apiKey: "AIzaSyCb_5n7K-f1eq_Q5vJYfNJpxjlnJyJIlzs",
-        authDomain: "hackfestsg.firebaseapp.com",
-        databaseURL: "https://hackfestsg.firebaseio.com",
-        storageBucket: "hackfestsg.appspot.com"
+        apiKey: "AIzaSyAUu0Vvjewlt7oROK1kFg-3n8kXnD4l4Zc",
+        authDomain: "hackfestsg2016.firebaseapp.com",
+        databaseURL: "https://hackfestsg2016.firebaseio.com",
+        storageBucket: ""
     };
 
     return firebase.initializeApp(config);
 })
 
-.factory('$user', function ($firebaseApp) {
+.factory('$merchants', function ($firebaseApp) {
+
+    var merchants = {
+        searchWithCode: searchWithCode,
+        latestMerchant: null
+    };
+
+    return merchants;
+    
+    function searchWithCode(code) {
+        return new Promise(function (resolve, reject) {
+            $firebaseApp.database().ref('merchants').once('value')
+            .then(function (data) {
+                var merchantList = data.val();
+
+                for (var id in merchantList) {
+                    var merchant = merchantList[id];
+                    if (merchant.code == code) {
+                        merchants.latestMerchant = merchant;
+                        resolve(merchant);
+                        return;
+                    }
+                }
+
+                reject("No merchant found.");
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
+    }
+})
+
+.factory('$user', function ($firebaseApp, $merchants) {
 
     var data = {};
     var user = {
         uid: 0,
         setType: setType,
+        setMerchantData: setMerchantData,
         initialize: initialize,
+        createTransaction: createTransaction,
         refresh: refresh,
         isLoggedIn: function () {
             return this.uid != 0;
@@ -34,31 +68,122 @@ angular.module('starter.services', ['ngCordova'])
         return $firebaseApp.database().ref().update(updates);
     }
 
-    function initialize() {
-        refresh();
+    function setMerchantData(name, business_no) {
+        
+        return $firebaseApp.database().ref('merchant_max_code').once('value')
+              .then(function (data) {
+                  var max_code = data.val();
+                  
+                  var uid = $firebaseApp.database().ref().child('merchants').push().key;
 
-        return $firebaseApp.database().ref('users/' + user.uid).set({
-            id: user.uid,
-            name: '',
-            balance: 0,
-            type: 'user',
-            transactions: [],
-            loggedInDeviceId: ''
+                  var merchant = {
+                      id: uid,
+                      name: name,
+                      business_no: business_no,
+                      code: max_code,
+                      balance: 0,
+                      device_id: ''
+                  };
+
+                  var updates = {};
+
+                  updates['users/' + user.uid + '/merchant_id'] = merchant.id;
+                  updates['merchant_max_code'] = max_code + 1;
+                  updates['merchants/' + merchant.id] = merchant;
+
+                  return $firebaseApp.database().ref().update(updates);
+              });
+    }
+
+    function initialize() {
+        return refresh()
+        .then(function () {
+            return $firebaseApp.database().ref('users/' + user.uid).set({
+                id: user.uid,
+                name: '',
+                balance: 0,
+                type: 'user',
+                transactions: []
+            });
         });
     }
 
     function refresh() {
-        var currentUser = $firebaseApp.auth().currentUser;
-        if (currentUser == null) {
-            user.uid = 0;
-        } else {
-            user.uid = currentUser.uid;
-            Object.assign(user, currentUser);
+        return new Promise(function(resolve, reject) {
+            var currentUser = $firebaseApp.auth().currentUser;
+            if (currentUser == null) {
+                user.uid = 0;
 
-            $firebaseApp.database().ref('users/' + user.uid).on('value', function (data) {
-                Object.assign(user, data.val());
+                resolve(user);
+
+            } else {
+                user.uid = currentUser.uid;
+
+                objectAssign(user, currentUser);
+
+                $firebaseApp.database().ref('users/' + user.uid).once('value')
+                .then(function (data) {
+                    objectAssign(user, data.val());
+
+                    $firebaseApp.database().ref('users/' + user.uid).on('value', function (data) {
+                        objectAssign(user, data.val());
+                    });
+
+                    resolve(data);
+                }).catch(function (error) {
+                    reject(error);
+                });
+            }
+        });
+    }
+
+    function createTransaction(merchant_id, amount) {
+        var uid = $firebaseApp.database().ref().child('transactions').push().key;
+
+        var transaction = {
+            id: uid,
+            merchant_id: merchant_id,
+            user_id: user.uid,
+            amount: parseFloat(amount),
+            timestamp: new Date().toDateString(),
+            refunded: false
+        };
+       
+        refresh();
+        var merchant = {};
+
+        return new Promise(function (resolve, reject) {
+            user.balance = parseFloat(user.balance);
+
+            if (user.balance < transaction.amount) {
+                reject("User does not have enough balance!");
+                return;
+            }
+
+            $firebaseApp.database().ref('merchants/' + merchant_id).once('value')
+            .then(function (data) {
+
+                objectAssign(merchant, data.val());
+
+                merchant.balance = parseFloat(merchant.balance);
+
+                var updates = {};
+
+                updates['users/' + user.uid + '/transactions/' + transaction.id];
+                updates['users/' + user.uid + '/balance'] = user.balance - transaction.amount;
+                updates['merchants/' + merchant_id + '/balance'] = merchant.balance + transaction.amount;
+                updates['transactions/' + transaction.id] = transaction;
+
+                return $firebaseApp.database().ref().update(updates);
+            }).then(function () {
+                resolve({
+                    transaction: transaction,
+                    merchant: merchant
+                });
+            }).catch(function (error) {
+                reject(error);
             });
-        }
+        });
     }
 })
 
@@ -97,12 +222,8 @@ angular.module('starter.services', ['ngCordova'])
             // If we have a null at the index then we want to return
             //  the null value, otherwise we JSON.parse the return value
             //  to handle all other types (strings, numbers, objects, arrays)
-            return $window.localStorage[key] === null ?
+            return (!$window.localStorage[key]) ?
               null : JSON.parse($window.localStorage[key]);
-        },
-
-        has: function (key) {
-            return $window.localStorage[key] != null;
         }
     };
 })
@@ -116,29 +237,28 @@ angular.module('starter.services', ['ngCordova'])
          * Calls cordova to open camera and scan for QRcode
          */
         scanBarcode: function() {
-            document.addEventListener("deviceready", function () {
-                $cordovaBarcodeScanner.scan({
+            return new Promise(function(resolve, reject) {
+                document.addEventListener("deviceready", function () {
+                    $cordovaBarcodeScanner.scan({
                         "preferFrontCamera" : false, // iOS and Android
                         "showFlipCameraButton" : true, // iOS and Android
                         "prompt" : "Scan for QR code!", // supported on Android only
                         "formats" : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
                         "orientation" : "portrait" // Android only (portrait|landscape), default unset so it rotates with the device
                     })
-                    .then(function(barcodeData) {
-                    // Success! Barcode data is here
-                    if (barcodeData.text != "") {
-                        alert("We got a barcode\n" +
-                            "Result: " + barcodeData.text + "\n" +
-                            "Format: " + barcodeData.format + "\n" +
-                            "Cancelled: " + barcodeData.cancelled
-                        );
-                    }
-                }, function(error) {
-                    // An error occurred
-                    alert("Scanning failed: " + error);
-                });
+                        .then(function(barcodeData) {
+                            // Success! Barcode data is here
+                            if (barcodeData.text != "") {
+                                resolve(barcodeData);
+                            } else {
+                                reject("Scanning failed.")
+                            }
+                        }, function(error) {
+                            reject("Scanning failed: " + error);
+                        });
 
-            }, false);
+                }, false);
+            });
         },
 
         /**
@@ -163,3 +283,10 @@ angular.module('starter.services', ['ngCordova'])
     };
 });
 
+function objectAssign(target, source) {
+    for (var i in source) {
+        target[i] = source[i];
+    }
+
+    return target;
+}

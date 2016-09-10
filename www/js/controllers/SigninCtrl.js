@@ -4,8 +4,9 @@
     $scope.login = function () {
         $firebaseApp.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password)
         .then(function (user) {
-            $user.refresh();
-            $state.go('app.home');
+            $user.refresh().then(function () {
+                $state.go('app.home');
+            })
         }).catch(function (error) {
             $ionicPopup.alert({
                 title: 'Login failed',

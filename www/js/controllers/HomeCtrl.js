@@ -1,5 +1,5 @@
 ﻿
-app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $QRScanner) {
+app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopover, $location, $merchants, $QRScanner) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
@@ -27,7 +27,7 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
         $scope.receipt.remove();
     });
 
-   
+
     $scope.keyboardSettings = {
         roundButtons: true,
 
@@ -60,12 +60,17 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
     }
 
     $scope.getIdByQr = function () {
+        $merchants.latestMerchant = null;
 
-        //TODO: invoke QR code
-        $state.go('payment');
-        //TODO: if correct, route to payment state
-
-        //TODO: invoke code confirmation method
+        $QRScanner.scanBarcode()
+         .then(function (barcodeData) {
+             $scope.verifyCode(barcodeData.text);
+         }).catch(function (error) {
+             $ionicPopup.alert({
+                 title: "Scanning failed",
+                 subTitle: error
+             });
+         });
     };
 
     $scope.getIdByText = function () {
@@ -82,17 +87,25 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
 
     $scope.scan = function () {
         $QRScanner.scanBarcode();
+        $merchants.latestMerchant = null;
+        $scope.verifyCode(1);
+        $scope.openKeypad();
+    };
+
+    $scope.verifyCode = function (code) {
+        $merchants.searchWithCode(code)
+        .then(function (merchant) {
+            $state.go('payment');
+        }).catch(function (error) {
+            $ionicPopup.alert({
+                title: "Merchant search failed",
+                subTitle: error
+            });
+        });
     };
 
     $scope.makeQR = function () {
         // Code, container, size
         $QRScanner.makeQRCode("1234567", "testing123", 200);
     };
-
-    verifyCode = function () {
-        //TODO: if correct then go to payment page
-
-        //TODO: if wrong then show popover saying its wrong
-    };
-
 });

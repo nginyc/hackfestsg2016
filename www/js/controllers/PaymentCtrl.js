@@ -1,9 +1,17 @@
-﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
-    //TODO: get the store info
-    $scope.store = {};
+﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
+   
+    if (!$user.isLoggedIn()) {
+        $state.go('signin');
+    }
 
-    //TODO: get user balance from server
+    var merchant = $merchants.latestMerchant;
+
+    if (merchant == null) {
+        $state.go('app.home');
+    }
+
     $scope.balance = 0;
+    $scope.merchant = merchant;
 
     $scope.$on("$ionicView.beforeEnter", function () {
         $scope.balance = 0;
@@ -15,45 +23,23 @@
         return ($scope.numbers / 100).toFixed(2);
     }
 
-    pay = function () {
-        //TODO: invoke method to send payment information
+    $scope.amount = 0; // amount to send
 
-        //TODO: if no error go back home
-        $state.go('app.home');
-
-        //TODO: else, show error message as popover
+    $scope.pay = function () {
+        $user.createTransaction(merchant.id, $scope.amount)
+        .then(function (data) {
+            $ionicPopup.alert({
+                title: "Transaction successful",
+                subTitle: "Sent $" + data.transaction.amount + " to " + data.merchant.name
+            }).then(function () {
+                $state.go('app.home');
+            });
+        }).catch(function (error) {
+            $ionicPopup.alert({
+                title: "Transaction failed",
+                subTitle: error
+            });
+        });
     }
 
-    $scope.keyboardSettings = {
-        roundButtons: true,
-
-        action: function (number) {
-            var n = $scope.numbers;
-            if (n > 9999999) {
-                return;
-            } else {
-                $scope.numbers = n * 10 + number;
-            }
-        },
-
-        leftButton: {
-            html: '<i class="icon ion-backspace"></i>',
-            action: function () {
-                console.log('back button pressed');
-                console.log($scope.numbers);
-                var n = $scope.numbers;
-                $scope.numbers = (n - n % 10) / 10;
-                console.log($scope.numbers);
-            }
-        },
-
-        rightButton: {
-            html: '<i class="icon ion-checkmark-circled"></i>',
-            action: function () {
-                pay();
-            }
-        }
-    }
-
-    //TODO: have a scope variable storing store info
 });
