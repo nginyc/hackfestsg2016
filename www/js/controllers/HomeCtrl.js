@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
 
     if (!$user.isLoggedIn()) {
         //$state.go('signin');
@@ -12,6 +12,7 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
     }).then(function (modal) {
         $scope.receipt = modal;
     });
+
     $scope.openReceipt = function () {
         $scope.receipt.show();
     };
