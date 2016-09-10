@@ -15,21 +15,22 @@ angular.module('starter.services', [])
 .factory('$merchants', function ($firebaseApp) {
 
     var merchants = {
-        getByCode: getByCode
+        searchWithCode: searchWithCode,
+        latestMerchant: null
     };
 
     return merchants;
-
-    function getByCode(code) {
+    
+    function searchWithCode(code) {
         return new Promise(function (resolve, reject) {
             $firebaseApp.database().ref('merchants').once('value')
             .then(function (data) {
-
                 var merchantList = data.val();
 
                 for (var id in merchantList) {
                     var merchant = merchantList[id];
                     if (merchant.code == code) {
+                        merchants.latestMerchant = merchant;
                         resolve(merchant);
                         return;
                     }
@@ -95,29 +96,45 @@ angular.module('starter.services', [])
     }
 
     function initialize() {
-        refresh();
-
-        return $firebaseApp.database().ref('users/' + user.uid).set({
-            id: user.uid,
-            name: '',
-            balance: 0,
-            type: 'user',
-            transactions: []
+        return refresh()
+        .then(function () {
+            return $firebaseApp.database().ref('users/' + user.uid).set({
+                id: user.uid,
+                name: '',
+                balance: 0,
+                type: 'user',
+                transactions: []
+            });
         });
     }
 
     function refresh() {
-        var currentUser = $firebaseApp.auth().currentUser;
-        if (currentUser == null) {
-            user.uid = 0;
-        } else {
-            user.uid = currentUser.uid;
-            Object.assign(user, currentUser);
+        return new Promise(function(resolve, reject) {
+            var currentUser = $firebaseApp.auth().currentUser;
+            if (currentUser == null) {
+                user.uid = 0;
 
-            $firebaseApp.database().ref('users/' + user.uid).on('value', function (data) {
-                Object.assign(user, data.val());
-            });
-        }
+                resolve(user);
+
+            } else {
+                user.uid = currentUser.uid;
+
+                objectAssign(user, currentUser);
+
+                $firebaseApp.database().ref('users/' + user.uid).once('value')
+                .then(function (data) {
+                    objectAssign(user, data.val());
+
+                    $firebaseApp.database().ref('users/' + user.uid).on('value', function (data) {
+                        objectAssign(user, data.val());
+                    });
+
+                    resolve(data);
+                }).catch(function (error) {
+                    reject(error);
+                });
+            }
+        });
     }
 
     function createTransaction(merchant_id, amount) {
@@ -133,20 +150,21 @@ angular.module('starter.services', [])
         };
        
         refresh();
-        var merchant = {}
+        var merchant = {};
 
         return new Promise(function (resolve, reject) {
-
             user.balance = parseFloat(user.balance);
 
             if (user.balance < transaction.amount) {
                 reject("User does not have enough balance!");
+                return;
             }
 
             $firebaseApp.database().ref('merchants/' + merchant_id).once('value')
             .then(function (data) {
 
-                Object.assign(merchant, data.val());
+                objectAssign(merchant, data.val());
+
                 merchant.balance = parseFloat(merchant.balance);
 
                 var updates = {};
@@ -158,7 +176,10 @@ angular.module('starter.services', [])
 
                 return $firebaseApp.database().ref().update(updates);
             }).then(function () {
-                resolve(transaction);
+                resolve({
+                    transaction: transaction,
+                    merchant: merchant
+                });
             }).catch(function (error) {
                 reject(error);
             });
@@ -201,12 +222,16 @@ angular.module('starter.services', [])
             // If we have a null at the index then we want to return
             //  the null value, otherwise we JSON.parse the return value
             //  to handle all other types (strings, numbers, objects, arrays)
-            return $window.localStorage[key] === null ?
+            return (!$window.localStorage[key]) ?
               null : JSON.parse($window.localStorage[key]);
-        },
-
-        has: function (key) {
-            return $window.localStorage[key] != null;
         }
     };
 });
+
+function objectAssign(target, source) {
+    for (var i in source) {
+        target[i] = source[i];
+    }
+
+    return target;
+}

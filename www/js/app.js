@@ -57,6 +57,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         .state('app.home', {
             url: '/home',
+            cache: false,
             views: {
                 'menuContent': {
                     templateUrl: 'templates/home.html',
