@@ -1,4 +1,4 @@
-﻿app.controller('DashboardCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
+﻿app.controller('DashboardCtrl', function ($scope, $firebaseApp, $ionicPopup, $timeout, $state, $user, $merchants) {
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
@@ -15,17 +15,34 @@
         return parseFloat(amount).toFixed(2);
     };
 
-    $scope.transactions = [];
+    var shownTransactions = [];
+    $scope.transactions = shownTransactions;
     $merchants.getTransactionsForMerchantId($user.merchant_id, function (transactions) {
+
+        for (var i in shownTransactions) {
+            shownTransactions[i].new = false;
+        }
+
         // Find new transactions
-        var lastSeconds = $scope.transactions.length > 0 ? $scope.transactions[0].timestamp : 0;
+        var lastSeconds = shownTransactions.length > 0 ? shownTransactions[0].timestamp : 0;
 
         var i = 0;
+        var newTransactions = [];
         while (transactions.length > i && transactions[i].timestamp > lastSeconds) {
-            $scope.transactions.push(transactions[i]);
-            console.log("NEW:  " + transactions[i]);
+            newTransactions.push(transactions[i]);
             i++;
         }
+
+        for (var i = newTransactions.length - 1; i >= 0; i--) {
+            var transaction = newTransactions[i];
+            transaction.new = true;
+
+            shownTransactions.unshift(newTransactions[i]);
+        }
+
+        $scope.$apply(function () {
+            $scope.transactions = shownTransactions;
+        });
     });
 
     $scope.getDateTime = function (timestamp) {

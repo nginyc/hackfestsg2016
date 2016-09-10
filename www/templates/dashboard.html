@@ -7,7 +7,7 @@
             </div>
             <div class="transactions list card">
                 <ng-repeat ng-repeat="transaction in transactions">
-                    <a class="item item-avatar">
+                    <a class="item item-avatar" ng-class="transaction.new ? 'green' : ''">
                         <img ng-src="img/adam.jpg" />
                         <h2>{{ transaction.user_name }}</h2>
                         <span>{{ getDateTime(transaction.timestamp)  | date : 'medium' }}</span>

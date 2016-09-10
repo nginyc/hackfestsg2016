@@ -9822,6 +9822,9 @@ a.button {
 ion-content {
   font-family: myFont !important; }
 
+.green {
+  background-color: green; }
+
 #dashboard .right {
   display: block;
   position: absolute;
