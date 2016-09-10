@@ -26,6 +26,11 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     src: url('../font/dosis.book.ttf');
 }
 
+@font-face {
+    font-family: myNeue;
+    src: url('../font/BebasNeueLight.otf');
+}
+
 #signin {
     ion-content {
         background-image: url('../img/login_background.png');
@@ -103,7 +108,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 #home {
     ion-content {
         font-family: myFont !important;
-        color: white !important;
+        height: 100%;
     }
     .top-image {
         height: 180px;
@@ -124,5 +129,43 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
         position: relative;
         top: -40px;
         left: 50px;
+    }
+    .profile-name {
+        position: relative;
+        top: -68px;
+        left: 140px;
+        font-size: 30px;
+    }
+    .wallet-image{
+        background-image: url('../img/wallet.png');
+        background-size: cover;
+        width: 100px;
+        height: 100px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+        top: -20px;
+        left: 130px;
+    }
+    .wallet-value{
+        font-family: myNeue !important;
+        font-size: 50px;
+        position: relative;
+        top: 120px;
+        left: 14px;
+    }
+    .icon {
+        zoom: 75%;
+    }
+    .button-container{
+        position: relative;
+        left: 55px;
+        top: 80px;
+    }
+    .button-balanced {
+        background-color: #00a97d;
+        width: 100px;
+        height: 10px;
+        margin: 10px;
     }
 }
