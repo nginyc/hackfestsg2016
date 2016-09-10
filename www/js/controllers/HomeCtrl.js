@@ -1,4 +1,4 @@
-app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopover, $location, $merchants, $QRScanner) {
+app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
