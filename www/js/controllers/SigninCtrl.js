@@ -6,8 +6,6 @@
 
     $scope.$on("$ionicView.beforeEnter", function () {
         $scope.user = {
-            email: $localStorage.get('email'),
-            password: $localStorage.get('password')
         };
 
         if ($scope.user.email != null) {
@@ -39,7 +37,4 @@
         $state.go('signup');
     }
 
-    if ($scope.user.email && $scope.user.password) {
-        $scope.login();
-    }
 });

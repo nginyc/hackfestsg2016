@@ -9,16 +9,24 @@
         </div>
 
         <div class="center-content">
-            <div class="wallet-image"></span>
+            <div class="wallet-image"></div>
 
             <div class="wallet-value">
-                ${{user.balance}}
+                ${{(user.balance).toFixed(2)}}
             </div>
         </div>
 
         <div class="button-container">
+            <button class="button" ng-click="getIdByText()">
+                <img src="../img/Type-Code_03.png"/>
+            </button>
+            <button class="button" ng-click="getIdByQr()">
+                <img src="../img/Scan-QR_03.png"/>
+            </button>
+            <!--
             <button class="button button-balanced" ng-click="getIdByText()">Type Code</button>
             <button class="button button-balanced" ng-click="getIdByQr()">Scan QR</button>
+            -->
         </div>
         
 

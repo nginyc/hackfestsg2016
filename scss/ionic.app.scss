@@ -38,6 +38,10 @@ ion-content {
     font-family: myFont !important;
 }
 
+.green {
+    background-color: green;
+}
+
 #dashboard {
     .right {
         display: block;
@@ -179,9 +183,8 @@ ion-content {
     .wallet-value {
         font-family: myNeue !important;
         font-size: 50px;
-        position: relative;
-        top: 120px;
-        left: 14px;
+        width: 100%;
+        text-align: center;
     }
 
     .icon {
@@ -189,16 +192,14 @@ ion-content {
     }
 
     .button-container {
+        width: 100%;
         position: relative;
-        left: 55px;
-        top: 80px;
+        top: 30px;
+        text-align: center;
     }
 
-    .button-balanced {
-        background-color: #00a97d;
-        width: 100px;
-        height: 10px;
-        margin: 10px;
+    .button {
+        zoom: 75%;
     }
 }
 

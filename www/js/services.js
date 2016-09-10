@@ -36,9 +36,8 @@ angular.module('starter.services', ['ngCordova'])
             }
 
             filtered.sort(function (t1, t2) {
-                return t1.timestamp < t2.timestamp;
+                return t2.timestamp - t1.timestamp;
             });
-
 
             resolve(filtered);
         });
