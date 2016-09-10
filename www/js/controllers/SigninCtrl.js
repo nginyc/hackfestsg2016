@@ -1,11 +1,9 @@
 ﻿app.controller('SigninCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $localStorage) {
-    $scope.user = {
-        email: $localStorage.get('email'),
-        password: $localStorage.get('password')
-    };
 
-    $scope.$on("$ionicView.beforeEnter", function () {
+    $scope.$on("$ionicView.afterEnter", function () {
         $scope.user = {
+            email: $localStorage.get('email'),
+            password: $localStorage.get('password')
         };
 
         if ($scope.user.email != null) {
