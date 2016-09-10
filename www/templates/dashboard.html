@@ -1,5 +1,23 @@
 ﻿<ion-view view-title="{{ date | date : 'EEE, dd MMM'}}">
     <ion-content>
+    	<div class="list card">
+			<a class="item transaction-card">
+				<div class="row">
+				    <div class="col col-75">Random user</div>
+				    <div class="col transaction-value">
+				    	<h1 text-align="right">$3.50</h1>
+				    </div>
+				</div>
 
+				<div class="row">
+				    <div class="col col-75">12:00PM</div>
+				    <div class="col refund">
+				    	<button class="button button-assertive">
+						    Refund
+						</button>
+				    </div>
+				</div>
+			</a>  
+		</div>
     </ion-content>
 </ion-view>

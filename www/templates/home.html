@@ -1,9 +1,10 @@
 ﻿<ion-view view-title="Spence">
     
-    <ion-content>
+    <ion-content scroll="false">
+
         <div>
             {{user.email}}!
-            <button class="button icon ion-ios-timer-outline" ng-click="openModal()"></button>
+            <button class="button icon ion-ios-timer-outline" ng-click="openReceipt()"></button>
             <img ng-src="img/adam.jpg">
         </div>
 
@@ -13,7 +14,7 @@
 
         <button class="button icon ion-qr-scanner" ng-click="getIdByQr()"></button>
 
-        <button class="button icon ion-ios-keypad" ng-click="getIdByText()"></button>
+        <button class="button icon ion-ios-keypad" ng-click="openKeypad()"></button>
         
         <button class="button" ng-click="makeQR()">Make QR Code</button>
 
@@ -24,7 +25,5 @@
             {{ numbers }}
         </div>
     </ion-content>
-
-    <ion-digit-keyboard settings="keyboardSettings" ng-show="keypadVisible"></ion-digit-keyboard>
 
 </ion-view>

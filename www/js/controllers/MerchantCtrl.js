@@ -3,6 +3,7 @@
         //TODO: check if user already inside
         //TODO: return confirmation popup if user already inside
         //TODO: else state go to dashboard
+        $state.go('dashboard');
     };
 
     $scope.forceGoToDashboard = function () {
