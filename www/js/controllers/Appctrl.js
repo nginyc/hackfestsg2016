@@ -3,7 +3,7 @@
         $firebaseApp.auth().signOut()
            .then(function () {
                $user.refresh();
-               $state.go('login');
+               $state.go('signin');
            }).catch(function (error) {
                $ionicPopup.alert({
                    title: "Something went wrong",

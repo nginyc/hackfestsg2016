@@ -5,7 +5,11 @@
         $firebaseApp.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password)
         .then(function (user) {
             $user.refresh().then(function () {
-                $state.go('app.home');
+                if ($user.type == "user") {
+                    $state.go('app.home');
+                } else if ($user.type == "merchant") {
+                    $state.go('merchant');
+                }
             })
         }).catch(function (error) {
             $ionicPopup.alert({
