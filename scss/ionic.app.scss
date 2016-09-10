@@ -133,6 +133,7 @@ ion-content {
         font-family: myFont !important;
         height: 100%;
     }
+
     .top-image {
         height: 180px;
         background-image: url('../img/cityscape.jpg');
@@ -140,6 +141,7 @@ ion-content {
         background-repeat: no-repeat;
         background-position: center center;
     }
+
     .profile-pic {
         background-image: url('../img/profile_picture.jpeg');
         display: inline-block;
@@ -199,5 +201,11 @@ ion-content {
         background-size: cover;
         font-family: myFont !important;
         color: white !important;
+    }
+
+    .centred {
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
