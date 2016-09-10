@@ -16,10 +16,28 @@ angular.module('starter.services', ['ngCordova'])
 
     var merchants = {
         searchWithCode: searchWithCode,
+        getTransactionsForMerchantId: getTransactionsForMerchantId,
         latestMerchant: null
     };
 
     return merchants;
+
+    function getTransactionsForMerchantId(merchant_id, resolve) {
+
+        $firebaseApp.database().ref('transactions').on('value', function (data) {
+            var transactionList = data.val();
+
+            var filtered = {};
+            for (var i in transactionList) {
+                var transaction = transactionList[i];
+                if (transaction.merchant_id == merchant_id) {
+                    filtered[i] = transaction;
+                }
+            }
+
+            resolve(filtered);
+        });
+    }
     
     function searchWithCode(code) {
         return new Promise(function (resolve, reject) {
@@ -102,8 +120,7 @@ angular.module('starter.services', ['ngCordova'])
                 id: user.uid,
                 name: '',
                 balance: 0,
-                type: 'user',
-                transactions: []
+                type: 'user'
             });
         });
     }
@@ -146,6 +163,7 @@ angular.module('starter.services', ['ngCordova'])
             user_id: user.uid,
             amount: parseFloat(amount),
             timestamp: new Date().toDateString(),
+            user_name: user.name,
             refunded: false
         };
        

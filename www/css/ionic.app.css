@@ -9819,11 +9819,26 @@ a.button {
   font-family: myFont;
   src: url("/font/dosis.book.ttf"); }
 
+ion-content {
+  font-family: myFont !important; }
+
+#dashboard .right {
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  bottom: 0; }
+
+#dashboard .refund-btn {
+  padding: 0 20px; }
+
+#dashboard .transactions .item {
+  position: relative; }
+
 #signin ion-content {
   background-image: url("/img/login background.png");
   background-size: cover;
-  font-family: myFont !important;
-  color: white !important; }
+  color: #f1f1f2 !important; }
 
 #signin .logo {
   display: block;
@@ -9850,7 +9865,7 @@ a.button {
 #signin .item-input {
   background: none;
   border: 0;
-  color: white;
+  color: #f1f1f2;
   border-bottom: 1px solid white;
   margin-top: 20px;
   padding: 0;
@@ -9859,18 +9874,18 @@ a.button {
 #signin .item-input span, #signin .item-input input {
   font-size: 24px;
   font-family: myFont !important;
-  color: white; }
+  color: #f1f1f2; }
 
 #signin .login-btn {
-  color: white;
+  color: #f1f1f2;
   background-color: #00a97d; }
 
 #signin .fb-btn {
-  color: white;
+  color: #f1f1f2;
   background-color: #3b5998; }
 
 #signin .signup-btn {
-  color: white;
+  color: #f1f1f2;
   display: inline-block;
   width: 100%;
   text-align: center;

@@ -21,17 +21,41 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+$text-color: #f1f1f2;
+
 @font-face {
     font-family: myFont;
     src: url('/font/dosis.book.ttf');
+}
+
+
+ion-content {
+    font-family: myFont !important;
+}
+
+#dashboard {
+    .right {
+        display: block;
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        bottom: 0;
+    }
+
+    .refund-btn {
+        padding: 0 20px;
+    }
+
+    .transactions .item {
+        position: relative;
+    }
 }
 
 #signin {
     ion-content {
         background-image: url('/img/login background.png');
         background-size: cover;
-        font-family: myFont !important;
-        color: white !important;
+        color: $text-color !important;
     }
 
     .logo {
@@ -64,7 +88,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .item-input {
         background: none;
         border: 0;
-        color: white;
+        color: $text-color;
         border-bottom: 1px solid white;
         margin-top: 20px;
         padding: 0;
@@ -74,21 +98,21 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .item-input span, .item-input input {
         font-size: 24px;
         font-family: myFont !important;
-        color: white;
+        color: $text-color;
     }
 
     .login-btn {
-        color: white;
+        color: $text-color;
         background-color: #00a97d;
     }
 
     .fb-btn {
-        color: white;
+        color: $text-color;
         background-color: #3b5998;
     }
 
     .signup-btn {
-        color: white;
+        color: $text-color;
         display: inline-block;
         width: 100%;
         text-align: center;
