@@ -33,6 +33,7 @@ $text-color: #f1f1f2;
     src: url('../font/BebasNeueLight.otf');
 }
 
+
 ion-content {
     font-family: myFont !important;
 }
@@ -155,13 +156,15 @@ ion-content {
         top: -40px;
         left: 50px;
     }
+
     .profile-name {
         position: relative;
         top: -68px;
         left: 140px;
         font-size: 30px;
     }
-    .wallet-image{
+
+    .wallet-image {
         background-image: url('../img/wallet.png');
         background-size: cover;
         width: 100px;
@@ -172,20 +175,24 @@ ion-content {
         top: -20px;
         left: 130px;
     }
-    .wallet-value{
+
+    .wallet-value {
         font-family: myNeue !important;
         font-size: 50px;
         width: 100%;
         text-align: center;
     }
+
     .icon {
         zoom: 75%;
     }
-    .button-container{
+
+    .button-container {
         position: relative;
         left: 55px;
         top: 30px;
     }
+
     .button-balanced {
         background-color: #00a97d;
         width: 100px;
@@ -200,11 +207,5 @@ ion-content {
         background-size: cover;
         font-family: myFont !important;
         color: white !important;
-    }
-
-    .centred {
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
     }
 }

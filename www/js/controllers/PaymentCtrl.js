@@ -1,5 +1,5 @@
 ﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
-   
+
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
@@ -14,7 +14,7 @@
     $scope.merchant = merchant;
 
     $scope.$on("$ionicView.beforeEnter", function () {
-        $scope.balance = 0;
+        $scope.numbers = 0;
     });
 
     $scope.numbers = 0;
@@ -23,10 +23,8 @@
         return ($scope.numbers / 100).toFixed(2);
     }
 
-    $scope.amount = parseInt(Math.random() * 100); // amount to send
-
     $scope.pay = function () {
-        $user.createTransaction(merchant.id, $scope.amount)
+        $user.createTransaction(merchant.id, $scope.numbers / 100)
         .then(function (data) {
             $ionicPopup.alert({
                 title: "Transaction successful",
@@ -40,5 +38,33 @@
                 subTitle: error
             });
         });
+    }
+
+    $scope.keyboardSettings = {
+        theme: 'light',
+
+        action: function (number) {
+            var n = $scope.numbers;
+            if (n > 999999) {
+                return;
+            } else {
+                $scope.numbers = n * 10 + number;
+            }
+        },
+
+        leftButton: {
+            html: '<i class="icon ion-backspace-outline"></i>',
+            action: function () {
+                var n = $scope.numbers;
+                $scope.numbers = (n - n % 10) / 10;
+            }
+        },
+
+        rightButton: {
+            html: '<img src=\'img/go.png\'>',
+            action: function () {
+                $scope.pay();
+            }
+        }
     }
 });
