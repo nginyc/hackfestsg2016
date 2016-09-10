@@ -126,3 +126,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
         left: 50px;
     }
 }
+
+#input {
+    ion-content {
+        background-image: url('../img/login_background.png');
+        background-size: cover;
+        font-family: myFont !important;
+        color: white !important;
+    }
+}

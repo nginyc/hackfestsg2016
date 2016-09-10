@@ -9902,3 +9902,9 @@ a.button {
   position: relative;
   top: -40px;
   left: 50px; }
+
+#input ion-content {
+  background-image: url("../img/login_background.png");
+  background-size: cover;
+  font-family: myFont !important;
+  color: white !important; }
