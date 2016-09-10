@@ -37,6 +37,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             controller: 'AppCtrl'
         })
 
+        .state('input', {
+            url: '/input',
+            abstract: true,
+            templateUrl: 'templates/input.html',
+            controller: 'InputCtrl'
+        })
+
         .state('login', {
             url: '/login',
             templateUrl: 'templates/login.html',
@@ -60,8 +67,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         })
 
+        .state('input.qr', {
+            url: '/qr',
+            templateUrl: 'templates/qr.html',
+            controller: 'QrCtrl'
+        })
+
+        .state('input.text', {
+            url: '/text',
+            templateUrl: 'templates/text.html',
+            controller: 'TextCtrl'
+        })
+
+         .state('payment', {
+             url: '/payment',
+             templateUrl: 'templates/payment.html',
+             controller: 'PaymentCtrl'
+         })
+
+         .state('merchant', {
+             url: '/merchant',
+             templateUrl: 'templates/merchant.html',
+             controller: 'MerchantCtrl'
+         })
+
+         .state('dashboard', {
+             url: '/dashboard',
+             templateUrl: 'templates/dashboard.html',
+             controller: 'DashboardCtrl'
+         })
     ;
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/login');
-
 });
