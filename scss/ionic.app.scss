@@ -188,16 +188,14 @@ ion-content {
     }
 
     .button-container {
+        width: 100%;
         position: relative;
-        left: 55px;
         top: 30px;
+        text-align: center;
     }
 
-    .button-balanced {
-        background-color: #00a97d;
-        width: 100px;
-        height: 10px;
-        margin: 10px;
+    .button {
+        zoom: 75%;
     }
 }
 
