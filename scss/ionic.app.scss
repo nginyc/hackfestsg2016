@@ -168,22 +168,20 @@ ion-content {
         font-size: 30px;
     }
     #wallet-image-container {
-        width: 100px;
-        display: inline-block;
         text-align: center;
+        width: 100%;
+        top: -40px;
         position: relative;
     }
     .wallet-image {
         background-image: url('../img/wallet.png');
         display: inline-block;
-        background-size: cover;
-        width: 100%;
-        text-align: center;
+        width: 100px;
         height: 100px;
+        text-align: center;
         background-repeat: no-repeat;
         background-position: center center;
-        position: relative;
-        top: -20px;
+        background-size: cover;
     }
 
     .wallet-value {
