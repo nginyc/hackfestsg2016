@@ -32,17 +32,7 @@ $text-color: #f1f1f2;
     font-family: myNeue;
     src: url('../font/BebasNeueLight.otf');
 }
-<<<<<<< HEAD
 
-@mixin vertical-align($position: relative) {
-    position: $position;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-=======
->>>>>>> e6347e202d04d42fca4d63d8727215e30e624cca
 
 ion-content {
     font-family: myFont !important;
@@ -218,9 +208,5 @@ ion-content {
         background-size: cover;
         font-family: myFont !important;
         color: white !important;
-    }
-
-    .centred {
-        @include vertical-align();
     }
 }
