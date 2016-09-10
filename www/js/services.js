@@ -122,7 +122,7 @@ angular.module('starter.services', ['ngCordova'])
                         "showFlipCameraButton" : true, // iOS and Android
                         "prompt" : "Scan for QR code!", // supported on Android only
                         "formats" : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
-                        "orientation" : "portrait" // Android only (portrait|landscape), default unset so it rotates with the device
+                        "orientation" : "" // Android only (portrait|landscape), default unset so it rotates with the device
                     })
                     .then(function(barcodeData) {
                     // Success! Barcode data is here
