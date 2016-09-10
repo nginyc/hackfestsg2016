@@ -1,0 +1,22 @@
+@font-face {
+    font-family: myFont;
+    src: url('../font/dosis.book.tff');
+}
+
+img {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.teamIntro {
+	text-align: center;
+	font-family: myFont;
+}
+
+#Main-Text{
+	font-size: 80px;
+}
+#Sub-Text{
+	font-size: 30px;
+}

@@ -2,7 +2,7 @@
 app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopover, $location, $merchants, $QRScanner) {
 
     if (!$user.isLoggedIn()) {
-        $state.go('signin');
+        //$state.go('signin');
     }
 
     $scope.user = $user;
