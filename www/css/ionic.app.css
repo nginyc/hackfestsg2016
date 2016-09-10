@@ -9931,16 +9931,35 @@ ion-content {
   left: 140px;
   font-size: 30px; }
 
+<<<<<<< HEAD
 #home .wallet-image {
   background-image: url("../img/wallet.png");
   background-size: cover;
   width: 100px;
+=======
+#home #wallet-image-container {
+  width: 100px;
+  display: inline-block;
+  text-align: center;
+  position: relative; }
+
+#home .wallet-image {
+  background-image: url("../img/wallet.png");
+  display: inline-block;
+  background-size: cover;
+  width: 100%;
+  text-align: center;
+>>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
   height: 100px;
   background-repeat: no-repeat;
   background-position: center center;
   position: relative;
+<<<<<<< HEAD
   top: -20px;
   left: 130px; }
+=======
+  top: -20px; }
+>>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
 
 #home .wallet-value {
   font-family: myNeue !important;

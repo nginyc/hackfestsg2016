@@ -167,17 +167,21 @@ ion-content {
         left: 140px;
         font-size: 30px;
     }
-
+    #wallet-image-container {
+        text-align: center;
+        width: 100%;
+        top: -40px;
+        position: relative;
+    }
     .wallet-image {
         background-image: url('../img/wallet.png');
-        background-size: cover;
+        display: inline-block;
         width: 100px;
         height: 100px;
+        text-align: center;
         background-repeat: no-repeat;
         background-position: center center;
-        position: relative;
-        top: -20px;
-        left: 130px;
+        background-size: cover;
     }
 
     .wallet-value {
@@ -198,8 +202,9 @@ ion-content {
         text-align: center;
     }
 
-    .button {
+    .button-img {
         zoom: 75%;
+        margin: 10px;
     }
 }
 
@@ -210,4 +215,12 @@ ion-content {
         font-family: myFont !important;
         color: white !important;
     }
+}
+
+#merchant {
+    ion-content {
+        font-family: myFont !important;
+        color: white !important;
+    }
+
 }
