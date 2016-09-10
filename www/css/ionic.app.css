@@ -9923,3 +9923,8 @@ ion-content {
   background-size: cover;
   font-family: myFont !important;
   color: white !important; }
+
+#input .centred {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }

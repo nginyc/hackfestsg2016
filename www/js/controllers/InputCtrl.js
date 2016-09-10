@@ -33,7 +33,7 @@
         },
 
         leftButton: {
-            html: '<img src=\'img/back.png\'>',
+            html: '<i class="icon ion-backspace-outline"></i>',
             action: function () {
                 console.log('back button pressed');
                 console.log($scope.numbers);
