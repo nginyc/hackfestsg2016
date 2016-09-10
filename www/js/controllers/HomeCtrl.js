@@ -1,12 +1,10 @@
-app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
 
     $scope.user = $user;
-
-    $scope.numbers;
 
     $ionicModal.fromTemplateUrl('templates/receipt.html', {
         scope: $scope,
@@ -23,63 +21,10 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
         $scope.receipt.hide();
     };
     
-
-    $ionicModal.fromTemplateUrl('templates/keypad.html', {
-        scope: $scope
-    }).then(function (modal) {
-        console.log('sent to keypad');
-        $scope.keypad = modal;
-    });
- 
-    $scope.openKeypad = function () {
-        console.log('openkeypad function called');
-        $scope.keypad.show();
-        console.log($scope.keypad);
-    };
-    
-
-    $scope.closeKeypad = function () {
-        $scope.keypad.hide();
-    };
-
     // Cleanup the modal when we're done with it
     $scope.$on('$destroy', function () {
-        //$scope.receipt.remove();
-        $scope.keypad.remove();
+        $scope.receipt.remove();
     });
-
-    
-    $scope.keyboardSettings = {
-        roundButtons: true,
-
-        action: function (number) {
-            var n = $scope.numbers;
-            if (n > 9999) {
-                return;
-            } else {
-                $scope.numbers = n * 10 + number;
-            }
-        },
-
-        leftButton: {
-            html: '<i class="icon ion-backspace"></i>',
-            action: function () {
-                console.log('back button pressed');
-                console.log($scope.numbers);
-                var n = $scope.numbers;
-                $scope.numbers = (n - n % 10) / 10;
-                console.log($scope.numbers);
-            }
-        },
-
-        rightButton: {
-            html: '<i class="icon ion-checkmark-circled"></i>',
-            action: function () {
-                pay();
-            }
-        }
-    }
-    
 
     $scope.getIdByQr = function () {
         $merchants.latestMerchant = null;
@@ -95,11 +40,10 @@ app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionic
          });
     };
 
-    /*
     $scope.getIdByText = function () {
-        $scope.openKeypad();
-    };
-    */
+        $state.go('input')
+
+    }
 
     $scope.scan = function () {
         $QRScanner.scanBarcode();
