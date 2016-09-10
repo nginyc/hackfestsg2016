@@ -5,5 +5,9 @@
     "scss/ionic.app.scss",
     "www/**/*",
     "!www/lib/**/*"
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
   ]
 }
