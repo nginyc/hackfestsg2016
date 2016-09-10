@@ -23,6 +23,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 $text-color: #f1f1f2;
 $background-color: #00a97d;
+$red-color: #ef4036;
 
 @font-face {
     font-family: myFont;
@@ -37,28 +38,6 @@ $background-color: #00a97d;
 
 ion-content {
     font-family: myFont !important;
-}
-
-.green {
-    background-color: green;
-}
-
-#dashboard {
-    .right {
-        display: block;
-        position: absolute;
-        right: 0;
-        padding: 10px;
-        bottom: 0;
-    }
-
-    .refund-btn {
-        padding: 0 20px;
-    }
-
-    .transactions .item {
-        position: relative;
-    }
 }
 
 #signin {
@@ -334,5 +313,32 @@ ion-content {
     ion-content {
         font-family: myFont !important;
         color: white !important;
+    }
+}
+
+
+#dashboard {
+    .right {
+        display: block;
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        bottom: 0;
+    }   
+
+    .refund-btn {
+        padding: 0 20px;
+    }
+
+    .transactions .item {
+        position: relative;
+    }
+
+    .green {
+        background-color: $background-color;
+    }
+
+    .red {
+        background-color: $red-color;
     }
 }

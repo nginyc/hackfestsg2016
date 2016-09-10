@@ -9826,22 +9826,6 @@ a.button {
 ion-content {
   font-family: myFont !important; }
 
-.green {
-  background-color: green; }
-
-#dashboard .right {
-  display: block;
-  position: absolute;
-  right: 0;
-  padding: 10px;
-  bottom: 0; }
-
-#dashboard .refund-btn {
-  padding: 0 20px; }
-
-#dashboard .transactions .item {
-  position: relative; }
-
 #signin ion-content {
   background-image: url("../img/login_background.png");
   background-size: cover;
@@ -9931,35 +9915,21 @@ ion-content {
   left: 140px;
   font-size: 30px; }
 
-<<<<<<< HEAD
-#home .wallet-image {
-  background-image: url("../img/wallet.png");
-  background-size: cover;
-  width: 100px;
-=======
 #home #wallet-image-container {
-  width: 100px;
-  display: inline-block;
   text-align: center;
+  width: 100%;
+  top: -40px;
   position: relative; }
 
 #home .wallet-image {
   background-image: url("../img/wallet.png");
   display: inline-block;
-  background-size: cover;
-  width: 100%;
-  text-align: center;
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
+  width: 100px;
   height: 100px;
+  text-align: center;
   background-repeat: no-repeat;
   background-position: center center;
-  position: relative;
-<<<<<<< HEAD
-  top: -20px;
-  left: 130px; }
-=======
-  top: -20px; }
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
+  background-size: cover; }
 
 #home .wallet-value {
   font-family: myNeue !important;
@@ -9976,11 +9946,118 @@ ion-content {
   top: 30px;
   text-align: center; }
 
-#home .button {
-  zoom: 75%; }
+#home .button-balanced {
+  background-color: #00a97d;
+  width: 100px;
+  height: 10px; }
+
+#home .button-img {
+  zoom: 75%;
+  margin: 10px; }
 
 #input ion-content {
   background-image: url("../img/login_background.png");
   background-size: cover;
+  color: #f1f1f2; }
+  #input ion-content .scroll {
+    text-align: center;
+    padding-top: 50px; }
+    #input ion-content .scroll h1 {
+      color: #f1f1f2;
+      font-family: myNeue;
+      font-size: 136px; }
+
+#input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
+  height: 100px; }
+
+#input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+  line-height: 100px; }
+
+#input .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+  font-size: 56px;
+  margin-top: 0;
+  font-family: myFont;
+  color: black; }
+
+#input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
+  line-height: 100px;
+  margin-top: 0;
+  font-family: myFont;
+  font-size: 56px;
+  color: black; }
+
+#payment ion-content {
+  background-image: url("../img/login_background.png");
+  background-size: cover;
+  color: #f1f1f2; }
+  #payment ion-content .scroll {
+    text-align: center;
+    padding-top: 20px; }
+    #payment ion-content .scroll h1 {
+      color: #f1f1f2;
+      font-family: myNeue;
+      font-size: 136px; }
+
+#payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
+  height: 100px; }
+
+#payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+  line-height: 100px; }
+
+#payment .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+  font-size: 56px;
+  margin-top: 0;
+  font-family: myFont;
+  color: black; }
+
+#payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
+  line-height: 100px;
+  margin-top: 0;
+  font-family: myFont;
+  font-size: 56px;
+  color: black; }
+
+#payment .balance {
+  text-transform: uppercase;
+  color: #f1f1f2;
+  text-align: left;
+  font-size: 50px;
+  font-family: myFont;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f1f2;
+  line-height: normal;
+  padding-left: 5px; }
+
+#navbar {
+  color: #f1f1f2;
+  font-family: myFont; }
+  #navbar ion-header-bar {
+    border: 0;
+    padding-bottom: 10px;
+    height: auto;
+    background-color: #00a97d; }
+  #navbar .title {
+    font-size: 30px; }
+
+#merchant ion-content {
   font-family: myFont !important;
   color: white !important; }
+
+#dashboard .right {
+  display: block;
+  position: absolute;
+  right: 0;
+  padding: 10px;
+  bottom: 0; }
+
+#dashboard .refund-btn {
+  padding: 0 20px; }
+
+#dashboard .transactions .item {
+  position: relative; }
+
+#dashboard .green {
+  background-color: #00a97d; }
+
+#dashboard .red {
+  background-color: #ef4036; }

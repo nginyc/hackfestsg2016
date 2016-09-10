@@ -1,26 +1,12 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-=======
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.hackfestsg835066" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>Hackfestsg</name>
-=======
-﻿<?xml version="1.0" encoding="utf-8"?>
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
 <widget id="com.ionicframework.hackfestsg835066" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Spence</name>
->>>>>>> c0d0015f424d898bb55248387bc7235e31ee3a44
   <description>
         An Ionic Framework and Cordova project.
     </description>
   <author email="you@example.com" href="http://example.com.com/">
       Your Name Here
     </author>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
   <content src="index.html"/>
   <access origin="*"/>
   <access launch-external="yes" origin="tel:*"/>
@@ -36,11 +22,9 @@
   <preference name="FadeSplashScreenDuration" value="2000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
-<<<<<<< HEAD
   <preference name="SplashScreen" value="none"/>
   <preference name="Orientation" value="portrait"/>
   <preference name="Fullscreen" value="True"/>
-=======
   <preference name="SplashScreen" value="screen"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
@@ -72,7 +56,6 @@
     <icon src="resources\android\icon\drawable-xxxhdpi-icon.png" density="xxxhdpi"/>
   </platform>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
-=======
   <content src="index.html" />
   <access origin="*" />
   <access launch-external="yes" origin="tel:*" />
@@ -89,7 +72,6 @@
   <preference name="android-minSdkVersion" value="16" />
   <preference name="BackupWebStorage" value="none" />
   <preference name="SplashScreen" value="none" />
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -113,12 +95,8 @@
     <splash src="resources\android\splash\drawable-port-xxhdpi-screen.png" density="port-xxhdpi"/>
     <splash src="resources\android\splash\drawable-port-xxxhdpi-screen.png" density="port-xxxhdpi"/>
   </platform>
-<<<<<<< HEAD
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
-=======
   <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
   <preference name="Orientation" value="portrait" />
   <preference name="Fullscreen" value="True" />
->>>>>>> c0d0015f424d898bb55248387bc7235e31ee3a44
->>>>>>> 9251ce72e6e5ea3b4716ce16518296fb70358434
 </widget>

@@ -7,13 +7,13 @@
             </div>
             <div class="transactions list card">
                 <ng-repeat ng-repeat="transaction in transactions">
-                    <a class="item item-avatar" ng-class="transaction.new ? 'green' : ''">
+                    <a class="item item-avatar" ng-class="{'green': transaction.new, 'red': transaction.refunded}">
                         <img ng-src="img/adam.jpg" />
                         <h2>{{ transaction.user_name }}</h2>
-                        <span>{{ getDateTime(transaction.timestamp)  | date : 'medium' }}</span>
+                        <span>{{ getDateTime(transaction.timestamp)  | date : 'shortTime' }}</span>
                         <span class="right">
                             <span class="price">$ {{ getAmount(transaction.amount) }}</span>
-                            <button class="refund-btn button button-assertive">
+                            <button ng-if="!transaction.refunded" ng-click="refund(transaction.id)" class="refund-btn button">
                                 Refund
                             </button>
                         </span>

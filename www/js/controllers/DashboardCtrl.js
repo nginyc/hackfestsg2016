@@ -15,42 +15,43 @@
         return parseFloat(amount).toFixed(2);
     };
 
+    $scope.refund = function (transaction_id) {
+        $merchants.refundForTransactionId(transaction_id)
+        .then(function () {
+            $ionicPopup.alert({
+                title: "Refund succeeded"
+            });
+        }).catch(function (error) {
+            $ionicPopup.alert({
+                title: "Refund failed",
+                subTitle: error
+            });
+        });
+    }
+
     var shownTransactions = [];
     $scope.transactions = shownTransactions;
     var firstTime = true;
 
     $merchants.getTransactionsForMerchantId($user.merchant_id, function (transactions) {
 
-        // Find new transactions
-        var lastSeconds = shownTransactions.length > 0 ? shownTransactions[0].timestamp : 0;
-
-        var i = 0;
-        var newTransactions = [];
-        while (transactions.length > i && transactions[i].timestamp > lastSeconds) {
-            newTransactions.push(transactions[i]);
-            i++;
-        }
-
-        for (var i = newTransactions.length - 1; i >= 0; i--) {
-            var transaction = newTransactions[i];
-            transaction.new = true;
-
-            shownTransactions.unshift(newTransactions[i]);
-        }
-
-        for (var i = 0; i < shownTransactions.length; i++) {
+        for (var i = 0; i < transactions.length; i++) {
             if (i == 0 && !firstTime) {
-                shownTransaction[i].new = true;
+                transactions[i].new = true;
             } else {
-                shownTransactions[i].new = false;
+                transactions[i].new = false;
             }
+
+            if (!transactions[i].refund)
         }
 
         firstTime = false;
 
-        $scope.$apply(function () {
-            $scope.transactions = shownTransactions;
-        });
+        shownTransactions.splice(0, shownTransactions.length);
+
+        for (var i = 0; i < transactions.length; i++) {
+            shownTransactions.push(transactions[i]);
+        }
     });
 
     $scope.getDateTime = function (timestamp) {

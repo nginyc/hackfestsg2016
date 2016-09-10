@@ -27,11 +27,11 @@
     $scope.pay = function () {
         $user.createTransaction(merchant.id, $scope.numbers / 100)
         .then(function (data) {
+            $state.go('app.home');
+
             $ionicPopup.alert({
                 title: "Transaction successful",
                 subTitle: "Sent $" + data.transaction.amount + " to " + data.merchant.name
-            }).then(function () {
-                $state.go('app.home');
             });
         }).catch(function (error) {
             $ionicPopup.alert({

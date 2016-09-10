@@ -16,11 +16,53 @@ angular.module('starter.services', ['ngCordova'])
 
     var merchants = {
         searchWithCode: searchWithCode,
+        refundForTransactionId: refundForTransactionId,
         getTransactionsForMerchantId: getTransactionsForMerchantId,
         latestMerchant: null
     };
 
     return merchants;
+
+    function refundForTransactionId(transaction_id) {
+        return new Promise(function (resolve, reject) {
+            $firebaseApp.database().ref('transactions/' + transaction_id).once('value')
+            .then(function (data) {
+                if (data == null) {
+                    reject('Cannot find transaction!');
+                } else {
+                    var transaction = data.val();
+                    if (transaction.refunded) {
+                        reject('Transaction already refunded!');
+                    } else {
+                        
+                        var user = {};
+                        var merchant = {};
+
+                        $firebaseApp.database().ref('users/' + transaction.user_id).once('value')
+                        .then(function (data) {
+                            user = data.val();
+                            return $firebaseApp.database().ref('merchants/' + transaction.merchant_id).once('value');
+                        }).then(function (data) {
+                            var merchant = data.val();
+
+                            var updates = {};
+                            updates['transactions/' + transaction.id + "/refunded"] = true;
+                            updates['users/' + user.id + '/balance'] = user.balance + transaction.amount;
+                            updates['merchants/' + merchant.id + '/balance'] = merchant.balance - transaction.amount;
+
+                            console.log(updates);
+
+                            return $firebaseApp.database().ref().update(updates);
+                        }).then(function(data) {
+                            resolve();
+                        }).catch(function (error) {
+                            reject(error);
+                        });
+                    }
+                }
+            })
+        });
+    }
 
     function getTransactionsForMerchantId(merchant_id, resolve) {
 
