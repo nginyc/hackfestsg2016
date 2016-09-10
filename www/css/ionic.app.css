@@ -9819,6 +9819,10 @@ a.button {
   font-family: myFont;
   src: url("../font/dosis.book.ttf"); }
 
+@font-face {
+  font-family: myNeue;
+  src: url("../font/BebasNeueLight.otf"); }
+
 ion-content {
   font-family: myFont !important; }
 
@@ -9896,7 +9900,7 @@ ion-content {
 
 #home ion-content {
   font-family: myFont !important;
-  color: white !important; }
+  height: 100%; }
 
 #home .top-image {
   height: 180px;
@@ -9918,6 +9922,44 @@ ion-content {
   top: -40px;
   left: 50px; }
 
+#home .profile-name {
+  position: relative;
+  top: -68px;
+  left: 140px;
+  font-size: 30px; }
+
+#home .wallet-image {
+  background-image: url("../img/wallet.png");
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  top: -20px;
+  left: 130px; }
+
+#home .wallet-value {
+  font-family: myNeue !important;
+  font-size: 50px;
+  position: relative;
+  top: 120px;
+  left: 14px; }
+
+#home .icon {
+  zoom: 75%; }
+
+#home .button-container {
+  position: relative;
+  left: 55px;
+  top: 80px; }
+
+#home .button-balanced {
+  background-color: #00a97d;
+  width: 100px;
+  height: 10px;
+  margin: 10px; }
+
 #input ion-content {
   background-image: url("../img/login_background.png");
   background-size: cover;
@@ -9927,4 +9969,6 @@ ion-content {
 #input .centred {
   position: relative;
   top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
