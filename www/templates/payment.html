@@ -1,14 +1,18 @@
-﻿<ion-view view-title="{{ merchant.name }}">
-    <ion-content scroll="false">
-        <button ng-click="pay()">
-            PAY
-        </button>
+﻿<ion-view id="payment" view-title="{{ merchant.name }}">
+    <ion-nav-buttons side="primary">
+        <button class="button button-icon ion-arrow-left-c"></button>
+    </ion-nav-buttons>
 
-        <div>
-            ${{ getAmount() }}
+    <ion-content>
+        <div class="balance">
+            Balance: ${{ getAmount(user.balance) }}
         </div>
 
+        <div class="centred">
+            <h1> ${{ getAmount(numbers / 100) }} </h1>
+        </div>
     </ion-content>
+
     <ion-digit-keyboard settings="keyboardSettings"></ion-digit-keyboard>
 
 </ion-view>

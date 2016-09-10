@@ -22,6 +22,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 $text-color: #f1f1f2;
+$background-color: #00a97d;
 
 @font-face {
     font-family: myFont;
@@ -112,7 +113,7 @@ ion-content {
 
     .login-btn {
         color: $text-color;
-        background-color: #00a97d;
+        background-color: $background-color;
     }
 
     .fb-btn {
@@ -198,7 +199,7 @@ ion-content {
     }
 
     .button-balanced {
-        background-color: #00a97d;
+        background-color: $background-color;
         width: 100px;
         height: 10px;
         margin: 10px;
@@ -209,7 +210,111 @@ ion-content {
     ion-content {
         background-image: url('../img/login_background.png');
         background-size: cover;
-        font-family: myFont !important;
-        color: white !important;
+        color: $text-color;
+
+        .scroll {
+            text-align: center;
+            padding-top: 50px;
+
+            h1 {
+                color: $text-color;
+                font-family: myNeue;
+                font-size: 136px;
+            }
+        }
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
+        height: 100px;
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+        line-height: 100px;
+    }
+
+    .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+        font-size: 56px;
+        margin-top: 0;
+        font-family: myFont;
+        color: black;
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
+       line-height: 100px;
+        margin-top: 0;
+        font-family: myFont;
+       font-size: 56px;
+        color: black;
+    }
+}
+
+
+#payment {
+    ion-content {
+        background-image: url('../img/login_background.png');
+        background-size: cover;
+        color: $text-color;
+
+        .scroll {
+            text-align: center;
+            padding-top: 20px;
+
+            h1 {
+                color: $text-color;
+                font-family: myNeue;
+                font-size: 136px;
+            }
+        }
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
+        height: 100px;
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
+        line-height: 100px;
+    }
+
+    .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
+        font-size: 56px;
+        margin-top: 0;
+        font-family: myFont;
+        color: black;
+    }
+
+    .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
+       line-height: 100px;
+        margin-top: 0;
+        font-family: myFont;
+       font-size: 56px;
+        color: black;
+    }
+
+    .balance {
+        text-transform: uppercase;
+        color: $text-color;
+        text-align: left;
+        font-size: 50px;
+        font-family: myFont;
+        padding-bottom: 10px;
+        border-bottom: 1px solid $text-color;
+        line-height: normal;
+        padding-left: 5px;
+    }
+}
+
+#navbar {
+    color: $text-color;
+    font-family: myFont;
+    
+    ion-header-bar {
+        border: 0;
+        padding-bottom: 10px;
+        height: auto;
+        background-color: $background-color;
+    }
+
+    .title {
+        font-size: 30px;
     }
 }
