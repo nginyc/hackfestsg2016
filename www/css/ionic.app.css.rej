@@ -1,0 +1,9 @@
+diff a/www/css/ionic.app.css b/www/css/ionic.app.css	(rejected hunks)
+@@ -9931,6 +9931,7 @@
+   left: 140px;
+   font-size: 30px; }
+ 
++<<<<<<< HEAD
+ #home .wallet-image {
+   background-image: url("../img/wallet.png");
+   background-size: cover;

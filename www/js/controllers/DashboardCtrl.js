@@ -41,8 +41,6 @@
             } else {
                 transactions[i].new = false;
             }
-
-            if (!transactions[i].refund)
         }
 
         firstTime = false;

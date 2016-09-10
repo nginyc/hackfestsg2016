@@ -9938,18 +9938,13 @@ ion-content {
   text-align: center; }
 
 #home .icon {
-  zoom: 75%; }
+  zoom: 50%; }
 
 #home .button-container {
   width: 100%;
   position: relative;
   top: 30px;
   text-align: center; }
-
-#home .button-balanced {
-  background-color: #00a97d;
-  width: 100px;
-  height: 10px; }
 
 #home .button-img {
   zoom: 75%;

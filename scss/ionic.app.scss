@@ -174,7 +174,7 @@ ion-content {
     }
 
     .icon {
-        zoom: 75%;
+        zoom: 50%;
     }
 
     .button-container {
@@ -182,12 +182,6 @@ ion-content {
         position: relative;
         top: 30px;
         text-align: center;
-    }
-
-    .button-balanced {
-        background-color: $background-color;
-        width: 100px;
-        height: 10px;
     }
 
     .button-img {

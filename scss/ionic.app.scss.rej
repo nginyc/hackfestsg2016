@@ -1,0 +1,10 @@
+diff a/scss/ionic.app.scss b/scss/ionic.app.scss	(rejected hunks)
+@@ -92,7 +92,7 @@
+ 
+     .login-btn {
+         color: $text-color;
+-        background-color: $background-color;
++        background-color: #00a97d;
+     }
+ 
+     .fb-btn {
