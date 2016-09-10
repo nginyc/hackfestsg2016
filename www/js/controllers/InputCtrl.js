@@ -50,7 +50,12 @@
             action: function () {
                 if ($scope.numbers > 99999) {
                     $scope.verifyCode($scope.numbers);
-                };
+                } else {
+                    $ionicPopup.alert({
+                        title: "",
+                        subTitle: "Code must be 6 digits"
+                    });
+                }
             }
         }
     }

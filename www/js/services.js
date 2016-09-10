@@ -27,13 +27,18 @@ angular.module('starter.services', ['ngCordova'])
         $firebaseApp.database().ref('transactions').on('value', function (data) {
             var transactionList = data.val();
 
-            var filtered = {};
+            var filtered = [];
             for (var i in transactionList) {
                 var transaction = transactionList[i];
                 if (transaction.merchant_id == merchant_id) {
-                    filtered[i] = transaction;
+                    filtered.push(transaction);
                 }
             }
+
+            filtered.sort(function (t1, t2) {
+                return t1.timestamp < t2.timestamp;
+            });
+
 
             resolve(filtered);
         });
@@ -162,7 +167,7 @@ angular.module('starter.services', ['ngCordova'])
             merchant_id: merchant_id,
             user_id: user.uid,
             amount: parseFloat(amount),
-            timestamp: new Date().toDateString(),
+            timestamp: Date.now(),
             user_name: user.name,
             refunded: false
         };
@@ -219,11 +224,7 @@ angular.module('starter.services', ['ngCordova'])
         set: function (key, value) {
             // If we are trying to set an object in here then we need
             //  to make sure it is a string, so we json encode it.
-            if (angular.isArray(value) || angular.isObject(value)) {
-                value = JSON.stringify(value);
-            }
-
-            $window.localStorage[key] = value;
+            $window.localStorage[key] = JSON.stringify(value);
         },
 
         /**
@@ -240,7 +241,7 @@ angular.module('starter.services', ['ngCordova'])
             // If we have a null at the index then we want to return
             //  the null value, otherwise we JSON.parse the return value
             //  to handle all other types (strings, numbers, objects, arrays)
-            return (!$window.localStorage[key]) ?
+            return ($window.localStorage[key] == undefined) ?
               null : JSON.parse($window.localStorage[key]);
         }
     };

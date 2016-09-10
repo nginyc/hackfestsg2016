@@ -9,10 +9,10 @@
                 <ng-repeat ng-repeat="transaction in transactions">
                     <a class="item item-avatar">
                         <img ng-src="img/adam.jpg" />
-                        <h2>{{ transaction.name }}</h2>
-                        <span>{{ transaction.date | date : 'EEE, dd MMM'}}</span>
+                        <h2>{{ transaction.user_name }}</h2>
+                        <span>{{ getDateTime(transaction.timestamp)  | date : 'medium' }}</span>
                         <span class="right">
-                            <span class="price">$ {{getAmount(transaction.amount)}}</span>
+                            <span class="price">$ {{ getAmount(transaction.amount) }}</span>
                             <button class="refund-btn button button-assertive">
                                 Refund
                             </button>
