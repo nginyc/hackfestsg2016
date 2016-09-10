@@ -1,18 +1,32 @@
 ﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
+   
     if (!$user.isLoggedIn()) {
-        $state.go('login');
+        $state.go('signin');
     }
 
     var merchant = $merchants.latestMerchant;
 
     if (merchant == null) {
-        $state.go('app.home')
+        $state.go('app.home');
     }
 
+    $scope.balance = 0;
     $scope.merchant = merchant;
 
-    $scope.pay = function (amount) {
-        $user.createTransaction(merchant.id, amount)
+    $scope.$on("$ionicView.beforeEnter", function () {
+        $scope.balance = 0;
+    });
+
+    $scope.numbers = 0;
+
+    $scope.getAmount = function () {
+        return ($scope.numbers / 100).toFixed(2);
+    }
+
+    $scope.amount = 0; // amount to send
+
+    $scope.pay = function () {
+        $user.createTransaction(merchant.id, $scope.amount)
         .then(function (data) {
             $ionicPopup.alert({
                 title: "Transaction successful",
@@ -27,4 +41,5 @@
             });
         });
     }
+
 });

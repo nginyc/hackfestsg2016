@@ -1,6 +1,7 @@
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $merchants) {
+app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $merchants, $QRScanner) {
+
     if (!$user.isLoggedIn()) {
-        $state.go('login');
+        $state.go('signin');
     }
 
     $scope.user = $user;
@@ -24,9 +25,16 @@
 
     $scope.getIdByQr = function () {
         $merchants.latestMerchant = null;
-        $scope.verifyCode(1); // sample
-        //TODO: invoke QR code
-        //TODO: Call verifyCode(code) after getting QR code
+
+        $QRScanner.scanBarcode()
+         .then(function (barcodeData) {
+             $scope.verifyCode(barcodeData.text);
+         }).catch(function (error) {
+             $ionicPopup.alert({
+                 title: "Scanning failed",
+                 subTitle: error
+             });
+         });
     };
 
     $scope.getIdByText = function () {
@@ -48,4 +56,8 @@
         });
     };
 
+    $scope.makeQR = function () {
+        // Code, container, size
+        $QRScanner.makeQRCode("1234567", "testing123", 200);
+    };
 });

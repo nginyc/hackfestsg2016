@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('starter.services', ['ngCordova'])
 
 .factory('$firebaseApp', function () {
 
@@ -224,6 +224,61 @@ angular.module('starter.services', [])
             //  to handle all other types (strings, numbers, objects, arrays)
             return (!$window.localStorage[key]) ?
               null : JSON.parse($window.localStorage[key]);
+        }
+    };
+})
+
+
+.factory('$QRScanner', function ($cordovaBarcodeScanner) {
+    return {
+        /** 
+         * @name scanBarcode
+         * @description
+         * Calls cordova to open camera and scan for QRcode
+         */
+        scanBarcode: function() {
+            return new Promise(function(resolve, reject) {
+                document.addEventListener("deviceready", function () {
+                    $cordovaBarcodeScanner.scan({
+                        "preferFrontCamera" : false, // iOS and Android
+                        "showFlipCameraButton" : true, // iOS and Android
+                        "prompt" : "Scan for QR code!", // supported on Android only
+                        "formats" : "QR_CODE,PDF_417", // default: all but PDF_417 and RSS_EXPANDED
+                        "orientation" : "portrait" // Android only (portrait|landscape), default unset so it rotates with the device
+                    })
+                        .then(function(barcodeData) {
+                            // Success! Barcode data is here
+                            if (barcodeData.text != "") {
+                                resolve(barcodeData);
+                            } else {
+                                reject("Scanning failed.")
+                            }
+                        }, function(error) {
+                            reject("Scanning failed: " + error);
+                        });
+
+                }, false);
+            });
+        },
+
+        /**
+         * @name makeQRCode
+         * @description
+         * Creates a QR code
+         * @param {string} code - string to be converted into QR code form
+         * @param {string} container - tag id of the container to display the generated QR code
+         * @param {int} size - height/width of QR code in pixels (Recommended 200)
+         */
+        makeQRCode: function(code, container, size) {
+            var qrcode = new QRCode(container, {
+                text: "http://jindo.dev.naver.com/collie",
+                width: size,
+                height: size,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+            qrcode.makeCode(code);
         }
     };
 });

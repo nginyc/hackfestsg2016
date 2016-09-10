@@ -1,8 +1,5 @@
-﻿app.controller('LoginCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $localStorage) {
-    $scope.user = {
-        email: '',
-        password: ''
-    };
+﻿app.controller('SigninCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
+    $scope.user = {};
 
     $scope.login = function () {
         $firebaseApp.auth().signInWithEmailAndPassword($scope.user.email, $scope.user.password)
