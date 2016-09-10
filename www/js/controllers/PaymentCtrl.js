@@ -14,7 +14,7 @@
     $scope.merchant = merchant;
 
     $scope.$on("$ionicView.beforeEnter", function () {
-        $scope.balance = 0;
+        $scope.numbers = 0;
     });
 
     $scope.numbers = 0;

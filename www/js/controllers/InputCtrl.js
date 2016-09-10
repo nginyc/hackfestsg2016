@@ -8,6 +8,10 @@
 
     $scope.numbers = 0;
 
+    $scope.$on("$ionicView.beforeEnter", function () {
+        $scope.numbers = 0;
+    });
+
     $scope.verifyCode = function (code) {
         $merchants.searchWithCode(code)
         .then(function (merchant) {
