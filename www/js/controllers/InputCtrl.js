@@ -8,6 +8,10 @@
 
     $scope.numbers = 0;
 
+    $scope.$on("$ionicView.beforeEnter", function () {
+        $scope.numbers = 0;
+    });
+
     $scope.verifyCode = function (code) {
         $merchants.searchWithCode(code)
         .then(function (merchant) {
@@ -33,7 +37,7 @@
         },
 
         leftButton: {
-            html: '<img src=\'img/back.png\'>',
+            html: '<i class="icon ion-backspace-outline"></i>',
             action: function () {
                 console.log('back button pressed');
                 console.log($scope.numbers);
