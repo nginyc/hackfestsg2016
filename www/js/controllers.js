@@ -19,7 +19,11 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('HomeCtrl', function ($scope, $firebaseApp) {
+.controller('HomeCtrl', function ($scope, $firebaseApp, $state) {
+    if ($firebaseApp.auth().currentUser == null) {
+        $state.go('login');
+    }
+
     $scope.user = $firebaseApp.auth().currentUser;
 })
 
@@ -50,10 +54,22 @@ angular.module('starter.controllers', [])
         try {
             $firebaseApp.auth().createUserWithEmailAndPassword($scope.user.email, $scope.user.password)
             .then(function (user) {
+
+                $firebaseApp.database().ref('users/' + user.uid).set({
+                    id: user.uid,
+                    name: '',
+                    balance: 0,
+                    type: $scope.user.type,
+                    transactions: [],
+                    loggedInDeviceId: ''
+                });
+                
                 $ionicPopup.alert({
                     title: "Sign up success",
                     okText: "Fine"
                 });
+            }, function (error) {
+                throw error;
             });
         } catch (error) {
             $ionicPopup.alert({
