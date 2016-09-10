@@ -3,26 +3,32 @@
     <ion-content>
         <div class="top-image"></div>
         <span class="profile-pic"></span>
-
-        <div>
-            {{user.email}}!
+        <div class="profile-name">
+            {{user.name}}
             <button class="button icon ion-ios-timer-outline" ng-click="openReceipt()"></button>
-            <!--<img ng-src="img/adam.jpg">-->
         </div>
 
-        <div>
-            Balance: ${{user.balance}}
+        <div class="center-content">
+            <div class="wallet-image"></span>
+
+            <div class="wallet-value">
+                ${{user.balance}}
+            </div>
         </div>
 
-        <button class="button icon ion-qr-scanner" ng-click="getIdByQr()"></button>
-
-        <button class="button icon ion-ios-keypad" ng-click="getIdByText()"></button>
+        <div class="button-container">
+            <button class="button button-balanced" ng-click="getIdByText()">Type Code</button>
+            <button class="button button-balanced" ng-click="getIdByQr()">Scan QR</button>
+        </div>
         
+
+        <!-- Unused features 
         <button class="button" ng-click="makeQR()">Make QR Code</button>
 
         <div id="testing123"></div>
 
         <button ui-sref="dashboard">go test the dasboard</button>
+        -->
     </ion-content>
 
 </ion-view>
