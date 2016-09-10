@@ -1,4 +1,8 @@
+﻿<<<<<<< HEAD
 ﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopover) {
+=======
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $QRScanner) {
+>>>>>>> 94f37e5b6985859699d9a738859b6cbe02a6d268
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
@@ -82,6 +86,15 @@
 
     $scope.getIdByText = function () {
         $scope.openKeypad();
+    };
+
+	$scope.scan = function () {
+        $QRScanner.scanBarcode();
+    }
+
+    $scope.makeQR = function () {
+        // Code, container, size
+        $QRScanner.makeQRCode("1234567", "testing123", 200);
     };
 
     verifyCode = function () {
