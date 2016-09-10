@@ -202,8 +202,9 @@ ion-content {
         text-align: center;
     }
 
-    .button {
+    .button-img {
         zoom: 75%;
+        margin: 10px;
     }
 }
 
@@ -214,4 +215,12 @@ ion-content {
         font-family: myFont !important;
         color: white !important;
     }
+}
+
+#merchant {
+    ion-content {
+        font-family: myFont !important;
+        color: white !important;
+    }
+
 }
