@@ -12,6 +12,7 @@
 
     $scope.balance = 0;
     $scope.merchant = merchant;
+    $scope.user = $user;
 
     $scope.$on("$ionicView.beforeEnter", function () {
         $scope.numbers = 0;
@@ -19,8 +20,8 @@
 
     $scope.numbers = 0;
 
-    $scope.getAmount = function () {
-        return ($scope.numbers / 100).toFixed(2);
+    $scope.getAmount = function (amount) {
+        return parseFloat(amount).toFixed(2);
     }
 
     $scope.pay = function () {
@@ -45,7 +46,7 @@
 
         action: function (number) {
             var n = $scope.numbers;
-            if (n > 999999) {
+            if (n > 99999) {
                 return;
             } else {
                 $scope.numbers = n * 10 + number;
@@ -55,15 +56,18 @@
         leftButton: {
             html: '<i class="icon ion-backspace-outline"></i>',
             action: function () {
+                console.log('back button pressed');
+                console.log($scope.numbers);
                 var n = $scope.numbers;
                 $scope.numbers = (n - n % 10) / 10;
+                console.log($scope.numbers);
             }
         },
 
         rightButton: {
-            html: '<img src=\'img/go.png\'>',
+            html: 'Pay',
             action: function () {
-                $scope.pay();
+               $scope.pay();
             }
         }
     }

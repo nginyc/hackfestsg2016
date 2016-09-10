@@ -9932,22 +9932,20 @@ ion-content {
   font-size: 30px; }
 
 #home #wallet-image-container {
-  width: 100px;
-  display: inline-block;
   text-align: center;
+  width: 100%;
+  top: -40px;
   position: relative; }
 
 #home .wallet-image {
   background-image: url("../img/wallet.png");
   display: inline-block;
-  background-size: cover;
-  width: 100%;
-  text-align: center;
+  width: 100px;
   height: 100px;
+  text-align: center;
   background-repeat: no-repeat;
   background-position: center center;
-  position: relative;
-  top: -20px; }
+  background-size: cover; }
 
 #home .wallet-value {
   font-family: myNeue !important;
@@ -9956,7 +9954,7 @@ ion-content {
   text-align: center; }
 
 #home .icon {
-  zoom: 75%; }
+  zoom: 50%; }
 
 #home .button-container {
   width: 100%;
@@ -9964,11 +9962,25 @@ ion-content {
   top: 30px;
   text-align: center; }
 
-#home .button {
-  zoom: 75%; }
+#home .button-img {
+  zoom: 75%;
+  margin: 10px; }
 
 #input ion-content {
   background-image: url("../img/login_background.png");
   background-size: cover;
   font-family: myFont !important;
   color: white !important; }
+
+#merchant ion-content {
+  font-family: myFont !important;
+  text-align: center; }
+
+#merchant #header-shoptext {
+  height: 40px;
+  vertical-align: middle;
+  line-height: 40px;
+  font-size: 30px; }
+
+#merchant .cashier-card {
+  height: 30%; }

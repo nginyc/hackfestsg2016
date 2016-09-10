@@ -48,7 +48,7 @@
         },
 
         rightButton: {
-            html: '<img src=\'img/go.png\'>',
+            html: 'Go',
             action: function () {
                 if ($scope.numbers > 99999) {
                     $scope.verifyCode($scope.numbers);

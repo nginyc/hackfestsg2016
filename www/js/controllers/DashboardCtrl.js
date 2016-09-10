@@ -17,11 +17,9 @@
 
     var shownTransactions = [];
     $scope.transactions = shownTransactions;
-    $merchants.getTransactionsForMerchantId($user.merchant_id, function (transactions) {
+    var firstTime = true;
 
-        for (var i in shownTransactions) {
-            shownTransactions[i].new = false;
-        }
+    $merchants.getTransactionsForMerchantId($user.merchant_id, function (transactions) {
 
         // Find new transactions
         var lastSeconds = shownTransactions.length > 0 ? shownTransactions[0].timestamp : 0;
@@ -39,6 +37,16 @@
 
             shownTransactions.unshift(newTransactions[i]);
         }
+
+        for (var i = 0; i < shownTransactions.length; i++) {
+            if (i == 0 && !firstTime) {
+                shownTransaction[i].new = true;
+            } else {
+                shownTransactions[i].new = false;
+            }
+        }
+
+        firstTime = false;
 
         $scope.$apply(function () {
             $scope.transactions = shownTransactions;

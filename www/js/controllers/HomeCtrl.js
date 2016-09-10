@@ -1,8 +1,12 @@
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner) {
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner, $ionicHistory) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
+
+    $scope.$on("$ionicView.afterEnter", function () {
+        $ionicHistory.clearHistory();
+    });
 
     $scope.user = $user;
 
