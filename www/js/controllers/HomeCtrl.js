@@ -1,6 +1,6 @@
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location) {
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $QRScanner) {
     if (!$user.isLoggedIn()) {
-        $state.go('login');
+        //$state.go('login');
     }
 
     $scope.user = $user;
@@ -32,9 +32,19 @@
     };
 
     $scope.getIdByText = function () {
+        
         $state.go('payment');
         //TODO: invoke state/modal for input
         //TODO: invoke code confirmation method
+    };
+
+	$scope.scan = function () {
+        $QRScanner.scanBarcode();
+    }
+
+    $scope.makeQR = function () {
+        // Code, container, size
+        $QRScanner.makeQRCode("1234567", "testing123", 200);
     };
 
     verifyCode = function () {
