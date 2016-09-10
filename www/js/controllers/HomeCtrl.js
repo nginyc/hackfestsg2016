@@ -1,8 +1,6 @@
-﻿<<<<<<< HEAD
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopover) {
-=======
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $QRScanner) {
->>>>>>> 94f37e5b6985859699d9a738859b6cbe02a6d268
+﻿
+app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $location, $QRScanner) {
+
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
@@ -23,27 +21,13 @@
     $scope.closeReceipt = function () {
         $scope.receipt.hide();
     };
+
     // Cleanup the modal when we're done with it
     $scope.$on('$destroy', function () {
         $scope.receipt.remove();
-        $scope.keypad.remove();
     });
 
-    $ionicPopover.fromTemplateUrl('templates/keypad.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (popover) {
-        $scope.keypad = popover;
-    });
-
-    $scope.openKeypad = function () {
-        $scope.keypad.show();
-    };
-
-    $scope.closeKeypad = function () {
-        $scope.keypad.hide();
-    };
-
+   
     $scope.keyboardSettings = {
         roundButtons: true,
 
@@ -85,12 +69,20 @@
     };
 
     $scope.getIdByText = function () {
-        $scope.openKeypad();
+        $scope.showKeypad();
     };
 
-	$scope.scan = function () {
+    $scope.hideKeypad = function () {
+        $scope.keypadVisible = false;
+    };
+
+    $scope.showKeypad = function () {
+        $scope.keypadVisible = true;
+    };
+
+    $scope.scan = function () {
         $QRScanner.scanBarcode();
-    }
+    };
 
     $scope.makeQR = function () {
         // Code, container, size
