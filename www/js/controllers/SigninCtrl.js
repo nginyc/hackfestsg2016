@@ -1,4 +1,4 @@
-﻿app.controller('LoginCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
+﻿app.controller('SigninCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
     $scope.user = {};
 
     $scope.login = function () {

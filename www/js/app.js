@@ -43,10 +43,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'InputCtrl'
         })
 
-        .state('login', {
-            url: '/login',
-            templateUrl: 'templates/login.html',
-            controller: 'LoginCtrl'
+        .state('signin', {
+            url: '/signin',
+            templateUrl: 'templates/signin.html',
+            controller: 'SigninCtrl'
         })
 
         .state('signup', {
@@ -65,11 +65,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
         })
 
-        .state('payment', {
-            url: '/payment',
-            templateUrl: 'templates/payment.html',
-            controller: 'PaymentCtrl'
-        })
+         .state('payment', {
+             cache: false,
+             url: '/payment',
+             templateUrl: 'templates/payment.html',
+             controller: 'PaymentCtrl'
+         })
 
         .state('merchant', {
             url: '/merchant',
@@ -84,5 +85,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/signin');
 });
