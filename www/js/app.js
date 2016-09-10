@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'ion-digit-keyboard', 'starter.controllers', 'starter.services'])
 
 .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -39,7 +39,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
         .state('input', {
             url: '/input',
-            abstract: true,
             templateUrl: 'templates/input.html',
             controller: 'InputCtrl'
         })
@@ -66,18 +65,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             }
         })
 
-        .state('input.qr', {
-            url: '/qr',
-            templateUrl: 'templates/qr.html',
-            controller: 'QrCtrl'
-        })
-
-        .state('input.text', {
-            url: '/text',
-            templateUrl: 'templates/text.html',
-            controller: 'TextCtrl'
-        })
-
          .state('payment', {
              url: '/payment',
              templateUrl: 'templates/payment.html',
@@ -94,8 +81,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
              url: '/dashboard',
              templateUrl: 'templates/dashboard.html',
              controller: 'DashboardCtrl'
-         })
-    ;
+         });
+
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/input');
 });

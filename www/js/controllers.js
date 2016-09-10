@@ -1,9 +1,5 @@
 angular.module('starter.controllers', [])
 
-.run(function ($rootScope) {
-    $rootScope.user = {};
-})
-
 .controller('AppCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
 
     $scope.logout = function () {
@@ -74,7 +70,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('QrCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
+.controller('InputCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
 
 })
 
