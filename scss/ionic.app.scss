@@ -21,3 +21,78 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+@font-face {
+    font-family: myFont;
+    src: url('/font/dosis.book.ttf');
+}
+
+#signin {
+    ion-content {
+        background-image: url('/img/login background.png');
+        background-size: cover;
+        font-family: myFont !important;
+        color: white !important;
+    }
+
+    .logo {
+        display: block;
+        margin: auto;
+        width: 25%;
+        width: 130px;
+        margin-top: 10%;
+        margin-bottom: 20px;
+    }
+
+    .teamIntro {
+        text-align: center;
+    }
+
+    .Main-Text {
+        font-size: 70px;
+    }
+
+    .Sub-Text {
+        font-size: 30px;
+    }
+
+    form {
+        margin-top: 50px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+
+    .item-input {
+        background: none;
+        border: 0;
+        color: white;
+        border-bottom: 1px solid white;
+        margin-top: 20px;
+        padding: 0;
+        padding-left: 5px;
+    }
+
+    .item-input span, .item-input input {
+        font-size: 24px;
+        font-family: myFont !important;
+        color: white;
+    }
+
+    .login-btn {
+        color: white;
+        background-color: #00a97d;
+    }
+
+    .fb-btn {
+        color: white;
+        background-color: #3b5998;
+    }
+
+    .signup-btn {
+        color: white;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        font-size: 20px;
+        cursor: pointer;
+    }
+}

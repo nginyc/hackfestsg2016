@@ -1,14 +1,11 @@
-﻿<ion-view view-title="Login" hide-nav-bar="true">
-    <!-- Add Stylesheet here -->
-    <link rel="stylesheet" type="text/css" href="css/signin.css">
-
+﻿﻿<ion-view id="signin" view-title="Login" hide-nav-bar="true">
     <ion-content scroll="false">
         <div class="teamIntro">
-            <img ng-src="img/Sense_Logo.png">
-            <span id="Main-Text">Spence</span><br/>
-            <span id="Sub-Text">Enabling a truly cashless society</span>
+            <img class='logo' ng-src="img/Sense_Logo.png">
+            <span class="Main-Text">Spence</span><br/><br/>
+            <span class="Sub-Text">Enabling a truly cashless society</span>
         </div>
-        <form class="list list-inset">
+        <form class="list">
             <label class="item item-input">
                 <span class="input-label">Email</span>
                 <input type="text" ng-model="user.email"/>
@@ -18,12 +15,14 @@
                 <span class="input-label">Password</span>
                 <input type="password" ng-model="user.password"/>
             </label>
-            <input class="item button button-block button-balanced" type="submit" value="Login" ng-click="login()"/>
-        </form>
+            <input class="item button button-block login-btn" type="submit" value="Sign In" ng-click="login()"/>
 
-        <button class="item button button-block button-calm padding" ui-sref="signup">
-            Signup
-        </button>
+            <button class="item button button-block fb-btn">
+               Login with Facebook
+            </button>
+        </form>
+        <a class='signup-btn' ng-click="signup()">Create Account</a>
 
     </ion-content>
  </ion-view>
+
