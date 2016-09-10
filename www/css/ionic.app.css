@@ -9965,6 +9965,7 @@ ion-content {
   background-size: cover;
   font-family: myFont !important;
   color: white !important; }
+<<<<<<< HEAD
 
 #input .centred {
   position: relative;
@@ -9972,3 +9973,5 @@ ion-content {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
+=======
+>>>>>>> e6347e202d04d42fca4d63d8727215e30e624cca
