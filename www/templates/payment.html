@@ -1,7 +1,15 @@
-﻿<ion-view view-title="Payment">
+﻿<ion-view view-title="{{ store }}">
     <ion-content>
-        <button ng-click="pay()">
-            pay amount
-        </button>
+
+        <div>
+            {{ balance }}
+        </div>
+        
+        <div>
+            ${{ getAmount() }}
+        </div>
+
     </ion-content>
+    <ion-digit-keyboard settings="keyboardSettings"></ion-digit-keyboard>
+
 </ion-view>
