@@ -4,9 +4,13 @@
         $state.go('signin');
     }
 
+    $scope.user = $user;
+
     $scope.numbers = 0;
 
     $scope.verifyCode = function (code) {
+        console.log('entered here');
+        console.log(code);
         $merchants.searchWithCode(code)
         .then(function (merchant) {
             $state.go('payment');
@@ -45,7 +49,6 @@
             html: '<i class="icon ion-checkmark-circled"></i>',
             action: function () {
                 if ($scope.numbers > 99999) {
-                    $scope.keypad.hide();
                     $scope.verifyCode($scope.numbers);
                 };
             }
