@@ -3,22 +3,55 @@ angular.module('starter.services', [])
 .factory('$firebaseApp', function () {
 
     var config = {
-        apiKey: "AIzaSyCb_5n7K-f1eq_Q5vJYfNJpxjlnJyJIlzs",
-        authDomain: "hackfestsg.firebaseapp.com",
-        databaseURL: "https://hackfestsg.firebaseio.com",
-        storageBucket: "hackfestsg.appspot.com"
+        apiKey: "AIzaSyAUu0Vvjewlt7oROK1kFg-3n8kXnD4l4Zc",
+        authDomain: "hackfestsg2016.firebaseapp.com",
+        databaseURL: "https://hackfestsg2016.firebaseio.com",
+        storageBucket: ""
     };
 
     return firebase.initializeApp(config);
 })
 
-.factory('$user', function ($firebaseApp) {
+.factory('$merchants', function ($firebaseApp) {
+
+    var merchants = {
+        getByCode: getByCode
+    };
+
+    return merchants;
+
+    function getByCode(code) {
+        return new Promise(function (resolve, reject) {
+            $firebaseApp.database().ref('merchants').once('value')
+            .then(function (data) {
+
+                var merchantList = data.val();
+
+                for (var id in merchantList) {
+                    var merchant = merchantList[id];
+                    if (merchant.code == code) {
+                        resolve(merchant);
+                        return;
+                    }
+                }
+
+                reject("No merchant found.");
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
+    }
+})
+
+.factory('$user', function ($firebaseApp, $merchants) {
 
     var data = {};
     var user = {
         uid: 0,
         setType: setType,
+        setMerchantData: setMerchantData,
         initialize: initialize,
+        createTransaction: createTransaction,
         refresh: refresh,
         isLoggedIn: function () {
             return this.uid != 0;
@@ -34,6 +67,33 @@ angular.module('starter.services', [])
         return $firebaseApp.database().ref().update(updates);
     }
 
+    function setMerchantData(name, business_no) {
+        
+        return $firebaseApp.database().ref('merchant_max_code').once('value')
+              .then(function (data) {
+                  var max_code = data.val();
+                  
+                  var uid = $firebaseApp.database().ref().child('merchants').push().key;
+
+                  var merchant = {
+                      id: uid,
+                      name: name,
+                      business_no: business_no,
+                      code: max_code,
+                      balance: 0,
+                      device_id: ''
+                  };
+
+                  var updates = {};
+
+                  updates['users/' + user.uid + '/merchant_id'] = merchant.id;
+                  updates['merchant_max_code'] = max_code + 1;
+                  updates['merchants/' + merchant.id] = merchant;
+
+                  return $firebaseApp.database().ref().update(updates);
+              });
+    }
+
     function initialize() {
         refresh();
 
@@ -42,8 +102,7 @@ angular.module('starter.services', [])
             name: '',
             balance: 0,
             type: 'user',
-            transactions: [],
-            loggedInDeviceId: ''
+            transactions: []
         });
     }
 
@@ -59,6 +118,51 @@ angular.module('starter.services', [])
                 Object.assign(user, data.val());
             });
         }
+    }
+
+    function createTransaction(merchant_id, amount) {
+        var uid = $firebaseApp.database().ref().child('transactions').push().key;
+
+        var transaction = {
+            id: uid,
+            merchant_id: merchant_id,
+            user_id: user.uid,
+            amount: parseFloat(amount),
+            timestamp: new Date().toDateString(),
+            refunded: false
+        };
+       
+        refresh();
+        var merchant = {}
+
+        return new Promise(function (resolve, reject) {
+
+            user.balance = parseFloat(user.balance);
+
+            if (user.balance < transaction.amount) {
+                reject("User does not have enough balance!");
+            }
+
+            $firebaseApp.database().ref('merchants/' + merchant_id).once('value')
+            .then(function (data) {
+
+                Object.assign(merchant, data.val());
+                merchant.balance = parseFloat(merchant.balance);
+
+                var updates = {};
+
+                updates['users/' + user.uid + '/transactions/' + transaction.id];
+                updates['users/' + user.uid + '/balance'] = user.balance - transaction.amount;
+                updates['merchants/' + merchant_id + '/balance'] = merchant.balance + transaction.amount;
+                updates['transactions/' + transaction.id] = transaction;
+
+                return $firebaseApp.database().ref().update(updates);
+            }).then(function () {
+                resolve(transaction);
+            }).catch(function (error) {
+                reject(error);
+            });
+        });
     }
 })
 

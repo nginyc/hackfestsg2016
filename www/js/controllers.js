@@ -70,8 +70,51 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('InputCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
+.controller('InputCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
 
+    /**
+    $firebaseApp.auth().createUserWithEmailAndPassword("yunchuannM@gmail.com", "123456")
+    .then(function () {
+        $user.refresh();
+    })
+    .then(function () {
+        $user.setMerchantData("CHICKEN RICE", 2);
+    });
+
+    /**
+    SEARCHING OF MERCHANT BY CODE
+    $scope.merchant_code = 3;
+
+    return $merchants.getByCode($scope.merchant_code)
+    .then(function (merchant) {
+        console.log(merchant + " FOUND!");
+    }).catch(function (error) {
+        $ionicPopup.alert({
+            title: "Merchant search failed",
+            subTitle: error
+        });
+    });
+    **/
+
+    /**
+    Making a transaction
+    $firebaseApp.auth().signInWithEmailAndPassword("beng@beng.com", "123456")
+    .then(function () {
+        return $user.refresh();
+    }).then(function() {
+        return $user.createTransaction("-KRH_FUaLRHMXWlPV0cH", -100);
+    }).then(function(transaction) {
+        $ionicPopup.alert({
+            title: "Sent $" + transaction.amount + " to " + , 
+            subTitle: error
+        });
+    }).catch(function (error) {
+        $ionicPopup.alert({
+            title: "Transaction failed",
+            subTitle: error
+        });
+    });
+    **/
 })
 
 .controller('MerchantCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {

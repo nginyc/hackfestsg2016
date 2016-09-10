@@ -84,5 +84,5 @@ angular.module('starter', ['ionic', 'ion-digit-keyboard', 'starter.controllers',
          });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/input');
+    $urlRouterProvider.otherwise('/login');
 });
