@@ -169,16 +169,22 @@ ion-content {
         font-size: 30px;
     }
 
+    #wallet-image-container {
+        text-align: center;
+        width: 100%;
+        top: -40px;
+        position: relative;
+    }
+
     .wallet-image {
         background-image: url('../img/wallet.png');
-        background-size: cover;
+        display: inline-block;
         width: 100px;
         height: 100px;
+        text-align: center;
         background-repeat: no-repeat;
         background-position: center center;
-        position: relative;
-        top: -20px;
-        left: 130px;
+        background-size: cover;
     }
 
     .wallet-value {
@@ -193,15 +199,20 @@ ion-content {
     }
 
     .button-container {
+        width: 100%;
         position: relative;
-        left: 55px;
         top: 30px;
+        text-align: center;
     }
 
     .button-balanced {
         background-color: $background-color;
         width: 100px;
         height: 10px;
+    }
+
+    .button-img {
+        zoom: 75%;
         margin: 10px;
     }
 }
@@ -240,10 +251,10 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-       line-height: 100px;
+        line-height: 100px;
         margin-top: 0;
         font-family: myFont;
-       font-size: 56px;
+        font-size: 56px;
         color: black;
     }
 }
@@ -283,10 +294,10 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-       line-height: 100px;
+        line-height: 100px;
         margin-top: 0;
         font-family: myFont;
-       font-size: 56px;
+        font-size: 56px;
         color: black;
     }
 
@@ -306,7 +317,7 @@ ion-content {
 #navbar {
     color: $text-color;
     font-family: myFont;
-    
+
     ion-header-bar {
         border: 0;
         padding-bottom: 10px;
@@ -316,5 +327,12 @@ ion-content {
 
     .title {
         font-size: 30px;
+    }
+}
+
+#merchant {
+    ion-content {
+        font-family: myFont !important;
+        color: white !important;
     }
 }
