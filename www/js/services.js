@@ -12,6 +12,56 @@ angular.module('starter.services', [])
     return firebase.initializeApp(config);
 })
 
+.factory('$user', function ($firebaseApp) {
+
+    var data = {};
+    var user = {
+        uid: 0,
+        setType: setType,
+        initialize: initialize,
+        refresh: refresh,
+        isLoggedIn: function () {
+            return this.uid != 0;
+        }
+    };
+
+    return user;
+
+    function setType(type) {
+        var updates = {};
+        updates['users/' + user.uid + '/type'] = type;
+
+        return $firebaseApp.database().ref().update(updates);
+    }
+
+    function initialize() {
+        refresh();
+
+        return $firebaseApp.database().ref('users/' + user.uid).set({
+            id: user.uid,
+            name: '',
+            balance: 0,
+            type: 'user',
+            transactions: [],
+            loggedInDeviceId: ''
+        });
+    }
+
+    function refresh() {
+        var currentUser = $firebaseApp.auth().currentUser;
+        if (currentUser == null) {
+            user.uid = 0;
+        } else {
+            user.uid = currentUser.uid;
+            Object.assign(user, currentUser);
+
+            $firebaseApp.database().ref('users/' + user.uid).on('value', function (data) {
+                Object.assign(user, data.val());
+            });
+        }
+    }
+})
+
 .factory('$localStorage', function ($window) {
 
     return {
@@ -23,16 +73,16 @@ angular.module('starter.services', [])
          * @param {string} key - the index at which the value will be set
          * @param {mixed} value - the value to set at the given index
          */
-        set: function(key, value) {
+        set: function (key, value) {
             // If we are trying to set an object in here then we need
             //  to make sure it is a string, so we json encode it.
             if (angular.isArray(value) || angular.isObject(value)) {
-                value = JSON.stringify(value);  
+                value = JSON.stringify(value);
             }
 
             $window.localStorage[key] = value;
         },
-        
+
         /**
          * @name get
          * @description
@@ -43,7 +93,7 @@ angular.module('starter.services', [])
          * 
          * @return {mixed} - the value stored at the given key in local storage
          */
-        get: function(key) {
+        get: function (key) {
             // If we have a null at the index then we want to return
             //  the null value, otherwise we JSON.parse the return value
             //  to handle all other types (strings, numbers, objects, arrays)
@@ -51,7 +101,7 @@ angular.module('starter.services', [])
               null : JSON.parse($window.localStorage[key]);
         },
 
-        has: function(key) {
+        has: function (key) {
             return $window.localStorage[key] != null;
         }
     };

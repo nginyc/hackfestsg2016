@@ -51,7 +51,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
         .state('app.home', {
             url: '/home',
-            cache: false,
             views: {
                 'menuContent': {
                     templateUrl: 'templates/home.html',
