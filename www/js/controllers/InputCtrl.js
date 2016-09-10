@@ -9,8 +9,6 @@
     $scope.numbers = 0;
 
     $scope.verifyCode = function (code) {
-        console.log('entered here');
-        console.log(code);
         $merchants.searchWithCode(code)
         .then(function (merchant) {
             $state.go('payment');
@@ -23,8 +21,8 @@
     };
 
     $scope.keyboardSettings = {
-        roundButtons: true,
-
+        theme: 'light',
+       
         action: function (number) {
             var n = $scope.numbers;
             if (n > 99999) {
@@ -35,7 +33,7 @@
         },
 
         leftButton: {
-            html: '<i class="icon ion-backspace"></i>',
+            html: '<img src=\'img/back.png\'>',
             action: function () {
                 console.log('back button pressed');
                 console.log($scope.numbers);
@@ -46,7 +44,7 @@
         },
 
         rightButton: {
-            html: '<i class="icon ion-checkmark-circled"></i>',
+            html: '<img src=\'img/go.png\'>',
             action: function () {
                 if ($scope.numbers > 99999) {
                     $scope.verifyCode($scope.numbers);
