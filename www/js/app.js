@@ -8,6 +8,7 @@
 var app = angular.module('starter', ['ionic', 'ion-digit-keyboard', 'starter.services'])
 
 app.run(function ($ionicPlatform) {
+
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -57,6 +58,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         .state('app.home', {
             url: '/home',
+            cache: false,
             views: {
                 'menuContent': {
                     templateUrl: 'templates/home.html',

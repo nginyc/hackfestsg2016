@@ -1,7 +1,6 @@
 ﻿<ion-view view-title="Spence">
     
     <ion-content>
-
         <div>
             {{user.email}}!
             <button class="button icon ion-ios-timer-outline" ng-click="openModal()"></button>
@@ -12,15 +11,20 @@
             Balance: ${{user.balance}}
         </div>
 
-        <button class="button icon ion-qr-scanner" on-touch="getIdByQr()"></button>
+        <button class="button icon ion-qr-scanner" ng-click="getIdByQr()"></button>
 
         <button class="button icon ion-ios-keypad" ng-click="getIdByText()"></button>
-
-        <button class="button" on-touch="scan()">Scan</button>
         
         <button class="button" ng-click="makeQR()">Make QR Code</button>
+
         <div id="testing123"></div>
 
         <button ui-sref="dashboard">go test the dasboard</button>
+        <div>
+            {{ numbers }}
+        </div>
     </ion-content>
+
+    <ion-digit-keyboard settings="keyboardSettings" ng-show="keypadVisible"></ion-digit-keyboard>
+
 </ion-view>
