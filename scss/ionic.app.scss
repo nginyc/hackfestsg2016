@@ -21,6 +21,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+$text-color: #f1f1f2;
+
 @font-face {
     font-family: myFont;
     src: url('../font/dosis.book.ttf');
@@ -29,14 +31,35 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @font-face {
     font-family: myNeue;
     src: url('../font/BebasNeueLight.otf');
+
+
+ion-content {
+    font-family: myFont !important;
+}
+
+#dashboard {
+    .right {
+        display: block;
+        position: absolute;
+        right: 0;
+        padding: 10px;
+        bottom: 0;
+    }
+
+    .refund-btn {
+        padding: 0 20px;
+    }
+
+    .transactions .item {
+        position: relative;
+    }
 }
 
 #signin {
     ion-content {
         background-image: url('../img/login_background.png');
         background-size: cover;
-        font-family: myFont !important;
-        color: white !important;
+        color: $text-color !important;
     }
 
     .logo {
@@ -69,7 +92,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .item-input {
         background: none;
         border: 0;
-        color: white;
+        color: $text-color;
         border-bottom: 1px solid white;
         margin-top: 5px;
         padding: 0;
@@ -79,22 +102,22 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
     .item-input span, .item-input input {
         font-size: 24px;
         font-family: myFont !important;
-        color: white;
+        color: $text-color;
     }
 
     .login-btn {
-        color: white;
+        color: $text-color;
         background-color: #00a97d;
     }
 
     .fb-btn {
-        color: white;
+        color: $text-color;
         background-color: #3b5998;
         height: 50%;
     }
 
     .signup-btn {
-        color: white;
+        color: $text-color;
         display: inline-block;
         height: 50%;
         width: 100%;
@@ -167,5 +190,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
         width: 100px;
         height: 10px;
         margin: 10px;
+    }
+}
+
+#input {
+    ion-content {
+        background-image: url('../img/login_background.png');
+        background-size: cover;
+        font-family: myFont !important;
+        color: white !important;
     }
 }

@@ -82,6 +82,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         .state('dashboard', {
             url: '/dashboard',
+            cache: false,
             templateUrl: 'templates/dashboard.html',
             controller: 'DashboardCtrl'
         });

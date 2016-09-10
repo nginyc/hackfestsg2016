@@ -23,7 +23,7 @@
         return ($scope.numbers / 100).toFixed(2);
     }
 
-    $scope.amount = 0; // amount to send
+    $scope.amount = parseInt(Math.random() * 100); // amount to send
 
     $scope.pay = function () {
         $user.createTransaction(merchant.id, $scope.amount)

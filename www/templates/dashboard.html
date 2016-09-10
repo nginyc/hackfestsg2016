@@ -1,23 +1,25 @@
 ﻿<ion-view view-title="{{ date | date : 'EEE, dd MMM'}}">
-    <ion-content>
-    	<div class="list card">
-			<a class="item transaction-card">
-				<div class="row">
-				    <div class="col col-75">Random user</div>
-				    <div class="col transaction-value">
-				    	<h1 text-align="right">$3.50</h1>
-				    </div>
-				</div>
-
-				<div class="row">
-				    <div class="col col-75">12:00PM</div>
-				    <div class="col refund">
-				    	<button class="button button-assertive">
-						    Refund
-						</button>
-				    </div>
-				</div>
-			</a>  
-		</div>
+    <ion-content id="dashboard">
+        <div class="card">
+            <div class="item item-divider row">
+                <div class="col col-66">Revenue</div>
+                <div class="col">${{getAmount(balance)}}</div>
+            </div>
+            <div class="transactions list card">
+                <ng-repeat ng-repeat="transaction in transactions">
+                    <a class="item item-avatar">
+                        <img ng-src="img/adam.jpg" />
+                        <h2>{{ transaction.user_name }}</h2>
+                        <span>{{ getDateTime(transaction.timestamp)  | date : 'medium' }}</span>
+                        <span class="right">
+                            <span class="price">$ {{ getAmount(transaction.amount) }}</span>
+                            <button class="refund-btn button button-assertive">
+                                Refund
+                            </button>
+                        </span>
+                    </a>
+                </ng-repeat>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

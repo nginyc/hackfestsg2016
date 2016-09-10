@@ -1,10 +1,15 @@
-﻿<ion-view view-title="Input">
-    <ion-content>
-        <div>
-            {{ numbers }}
-        </div>
-    </ion-content>
+﻿<ion-view id="input" view-title="Input">
+    <ion-view view-title="{{ product.name }}">
+        <ion-nav-buttons side="primary">
+                <button class="button button-icon ion-arrow-left-c"></button>
+        </ion-nav-buttons>
+
+        <ion-content>
+            <div class="top-image">
+                <h1> {{ numbers }} </h1>
+            </div>
+        </ion-content>
 
         <ion-digit-keyboard settings="keyboardSettings"></ion-digit-keyboard>
 
-</ion-view>
+    </ion-view>
