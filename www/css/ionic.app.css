@@ -9966,7 +9966,7 @@ ion-content {
   height: 100px; }
 
 #input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-  line-height: 100px; }
+  line-height: 90px; }
 
 #input .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
   font-size: 56px;
@@ -9975,7 +9975,7 @@ ion-content {
   color: black; }
 
 #input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-  line-height: 100px;
+  line-height: 90px;
   margin-top: 0;
   font-family: myFont;
   font-size: 56px;
@@ -9994,10 +9994,10 @@ ion-content {
       font-size: 136px; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
-  height: 100px; }
+  height: 90px; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-  line-height: 100px; }
+  line-height: 90px; }
 
 #payment .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
   font-size: 56px;
@@ -10006,7 +10006,7 @@ ion-content {
   color: black; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-  line-height: 100px;
+  line-height: 90px;
   margin-top: 0;
   font-family: myFont;
   font-size: 56px;
@@ -10042,11 +10042,17 @@ ion-content {
   display: block;
   position: absolute;
   right: 0;
-  padding: 10px;
-  bottom: 0; }
+  top: 0;
+  padding-right: 10px;
+  text-align: right; }
 
 #dashboard .refund-btn {
-  padding: 0 20px; }
+  background-color: #ef4036;
+  padding: 5px 10px;
+  min-height: 0;
+  line-height: normal;
+  color: #f1f1f2;
+  font-family: myFont; }
 
 #dashboard .transactions .item {
   position: relative; }
@@ -10056,3 +10062,52 @@ ion-content {
 
 #dashboard .red {
   background-color: #ef4036; }
+
+#dashboard .balance_card {
+  padding: 30px;
+  margin-bottom: 10px;
+  position: relative; }
+
+#dashboard .balance {
+  font-size: 65px;
+  padding-left: 25px;
+  text-align: center; }
+
+#dashboard .balance_text {
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px; }
+
+#dashboard .transactions {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-family: myFont;
+  color: #f1f1f2; }
+  #dashboard .transactions .name {
+    font-size: 30px; }
+  #dashboard .transactions .date {
+    padding-top: 10px;
+    font-size: 20px;
+    color: #bbbdc0; }
+  #dashboard .transactions img {
+    max-width: 60px;
+    max-height: 60px;
+    left: 4px;
+    top: 4px; }
+  #dashboard .transactions .price {
+    font-size: 40px;
+    line-height: normal;
+    font-family: myNeue; }
+  #dashboard .transactions .item {
+    padding: 10px;
+    padding-left: 75px;
+    padding-bottom: 30px;
+    border: 0px solid black;
+    -webkit-transition: all 1.0s ease-in-out;
+    -moz-transition: all 1.0s ease-in-out;
+    -o-transition: all 1.0s ease-in-out;
+    transition: all 1.0s ease-in-out; }
+    #dashboard .transactions .item.new {
+      border: 5px solid black; }

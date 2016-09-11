@@ -1,22 +1,22 @@
 ﻿<ion-view view-title="{{ date | date : 'EEE, dd MMM'}}">
     <ion-content id="dashboard">
-        <div class="card">
-            <div class="item item-divider row">
-                <div class="col col-66">Revenue</div>
-                <div class="col">${{getAmount(balance)}}</div>
+        <div>
+            <div class="balance_card card">
+                <div class="balance_text">Revenue:</div>
+                <div class="balance">${{getAmount(balance)}}</div>
             </div>
-            <div class="transactions list card">
+            <div class="transactions list">
                 <ng-repeat ng-repeat="transaction in transactions">
-                    <a class="item item-avatar" ng-class="{'green': transaction.new, 'red': transaction.refunded}">
+                    <a id="{{ getId(transaction.id) }}" ng-if="!transaction.refunded" class="item item-avatar green">
                         <img ng-src="img/adam.jpg" />
-                        <h2>{{ transaction.user_name }}</h2>
-                        <span>{{ getDateTime(transaction.timestamp)  | date : 'shortTime' }}</span>
-                        <span class="right">
-                            <span class="price">$ {{ getAmount(transaction.amount) }}</span>
-                            <button ng-if="!transaction.refunded" ng-click="refund(transaction.id)" class="refund-btn button">
+                        <div class="name">{{ transaction.user_name }}</div>
+                        <div class="date">{{ getDateTime(transaction.timestamp)  | date : 'shortTime' }}</div>
+                        <div class="right">
+                            <div class="price">$ {{ getAmount(transaction.amount) }}</div>
+                            <button ng-click="refund(transaction.id)" class="refund-btn button">
                                 Refund
                             </button>
-                        </span>
+                        </div>
                     </a>
                 </ng-repeat>
             </div>

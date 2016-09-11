@@ -50,8 +50,6 @@ angular.module('starter.services', ['ngCordova'])
                             updates['users/' + user.id + '/balance'] = user.balance + transaction.amount;
                             updates['merchants/' + merchant.id + '/balance'] = merchant.balance - transaction.amount;
 
-                            console.log(updates);
-
                             return $firebaseApp.database().ref().update(updates);
                         }).then(function(data) {
                             resolve();
@@ -65,6 +63,9 @@ angular.module('starter.services', ['ngCordova'])
     }
 
     function getTransactionsForMerchantId(merchant_id, resolve) {
+        var now = new Date();
+        var yest = new Date();
+        yest.setDate(now.getDate() - 1);
 
         $firebaseApp.database().ref('transactions').on('value', function (data) {
             var transactionList = data.val();
@@ -72,7 +73,8 @@ angular.module('starter.services', ['ngCordova'])
             var filtered = [];
             for (var i in transactionList) {
                 var transaction = transactionList[i];
-                if (transaction.merchant_id == merchant_id) {
+
+                if (transaction.merchant_id == merchant_id && yest.getTime() <= transaction.timestamp) {
                     filtered.push(transaction);
                 }
             }
