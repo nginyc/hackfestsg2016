@@ -1,4 +1,4 @@
-﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants) {
+﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants, $localStorage) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
@@ -27,6 +27,8 @@
     $scope.pay = function () {
         $user.createTransaction(merchant.id, $scope.numbers / 100)
         .then(function (data) {
+            $localStorage.set('receipt', data);
+            $scope.data = data;
             $state.go('app.home');
 
             $ionicPopup.alert({

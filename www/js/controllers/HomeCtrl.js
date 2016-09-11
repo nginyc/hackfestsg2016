@@ -1,34 +1,26 @@
-﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $ionicModal, $ionicPopup, $ionicPopover, $location, $merchants, $QRScanner, $ionicHistory) {
+﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $localStorage, $ionicPopup, $location, $merchants, $QRScanner, $ionicHistory) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
 
     $scope.$on("$ionicView.afterEnter", function () {
-        $ionicHistory.clearHistory();
+        //$ionicHistory.clearHistory();
     });
 
     $scope.user = $user;
 
-    $ionicModal.fromTemplateUrl('templates/receipt.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.receipt = modal;
-    });
+    $scope.data = $localStorage.get('receipt');
 
+    
     $scope.openReceipt = function () {
-        $scope.receipt.show();
+        if($scope.data != null) {
+                $ionicPopup.alert({
+                title: "Transaction successful",
+                subTitle: "Sent $" + $scope.data.transaction.amount + " to " + $scope.data.merchant.name
+            });
+        }
     };
-
-    $scope.closeReceipt = function () {
-        $scope.receipt.hide();
-    };
-
-    // Cleanup the modal when we're done with it
-    $scope.$on('$destroy', function () {
-        $scope.receipt.remove();
-    });
 
     $scope.getIdByQr = function () {
         $merchants.latestMerchant = null;

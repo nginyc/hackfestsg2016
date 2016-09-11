@@ -6,7 +6,7 @@
             password: $localStorage.get('password')
         };
 
-        if ($scope.user.email != null) {
+        if ($scope.user.email != null && $scope.user.email.toLower() != "a@merchants.com") {
             $scope.login();
         }
     });

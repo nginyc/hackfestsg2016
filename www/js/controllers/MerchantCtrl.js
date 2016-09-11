@@ -1,4 +1,9 @@
-﻿app.controller('MerchantCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user) {
+﻿app.controller('MerchantCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $ionicHistory) {
+	$scope.$on("$ionicView.afterEnter", function () {
+        $ionicHistory.clearHistory();
+    });
+
+	
     $scope.goToDashboard = function () {
         //TODO: check if user already inside
         //TODO: return confirmation popup if user already inside
