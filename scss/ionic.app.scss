@@ -306,7 +306,23 @@ ion-content {
 #merchant {
     ion-content {
         font-family: myFont !important;
-        color: white !important;
+        text-align: center;
+        width: 100%;
+    }
+    #header-shoptext {
+        height: 50px;
+        vertical-align: middle;
+        line-height: 50px;  
+        font-size: 38px;
+    }
+    .img-card{
+        max-height: 100%;
+        max-width: 100%;
+        
+    }
+    .card {
+        margin-bottom:45px;
+        height: 182px;
     }
 }
 
