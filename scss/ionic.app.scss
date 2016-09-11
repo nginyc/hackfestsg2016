@@ -52,6 +52,8 @@ ion-content {
     }
 
     .title {
+        position: initial;
+        width: 100%;
         font-size: 30px;
     }
 }
@@ -313,10 +315,21 @@ ion-content {
         height: auto;
         background-color: $background-color;
     }
-
+    
     .title {
+        position: initial;
+        width: 100%;
         font-size: 30px;
     }
+}
+
+.bar .button.back-button, .bar button.back-button {
+    position: absolute;
+}
+
+
+.buttons.buttons-left.header-item {
+    position: absolute;
 }
 
 #merchant {
@@ -325,19 +338,21 @@ ion-content {
         text-align: center;
         width: 100%;
     }
+
     #header-shoptext {
         height: 50px;
         vertical-align: middle;
-        line-height: 50px;  
+        line-height: 50px;
         font-size: 38px;
     }
-    .img-card{
+
+    .img-card {
         max-height: 100%;
         max-width: 100%;
-        
     }
+
     .card {
-        margin-bottom:45px;
+        margin-bottom: 45px;
         height: 182px;
     }
 }
@@ -428,7 +443,6 @@ ion-content {
             padding-left: 75px;
             padding-bottom: 30px;
             border: 0px solid black;
-
             -webkit-transition: all 1.0s ease-in-out;
             -moz-transition: all 1.0s ease-in-out;
             -o-transition: all 1.0s ease-in-out;

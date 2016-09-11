@@ -1,4 +1,4 @@
-﻿app.controller('DashboardCtrl', function ($scope, $firebaseApp, $document, $ionicPopup, $timeout, $state, $user, $merchants) {
+﻿app.controller('DashboardCtrl', function ($scope, $firebaseApp, $ionicPopup, $timeout, $state, $user, $merchants) {
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
@@ -32,43 +32,35 @@
     var shownTransactions = [];
     $scope.transactions = shownTransactions;
     var firstTime = true;
-    $scope.hasSeen = [];
+    var hasSeen = [];
+
+    $scope.hasSeen = function (transaction_id) {
+        return hasSeen.indexOf(transaction_id) != -1;
+    };
 
     $merchants.getTransactionsForMerchantId($user.merchant_id, function (transactions) {
        
         if (firstTime) {
             for (var i = 0; i < transactions.length; i++) {
-                $scope.hasSeen[transactions[i].id] = true;
+                hasSeen.push(transactions[i].id);
             }
             firstTime = false;
-        }
-        
+        } 
 
         $scope.balance = 0;
 
         shownTransactions.splice(0, shownTransactions.length);
 
         for (var i = 0; i < transactions.length; i++) {
-            var transaction = transactions[i];
-            shownTransactions.push(transaction);
+            shownTransactions.push(transactions[i]);
 
-            if (!transaction.refunded) {
-                $scope.balance += transaction.amount;
-                if (!$scope.hasSeen[transaction.id]) {
-                    $document.getElementById("transaction" + transaction.id).classList.add("new");
-                    $timeout(function () {
-                        $document.getElementById("transaction" + transaction.id).classList.remove("new");
-                    }, 10);
-                }
+            if (!transactions[i].refunded) {
+                $scope.balance += transactions[i].amount;
             }
         }
 
         $scope.$digest();
     });
-
-    $scope.getId = function(id) {
-        return 'transaction' + id;
-    };
 
     $scope.getDateTime = function (timestamp) {
         return new Date(timestamp);

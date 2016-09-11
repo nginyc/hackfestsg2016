@@ -9835,6 +9835,8 @@ ion-content {
     height: auto;
     background-color: #00a97d; }
   #navbar-2 .title {
+    position: initial;
+    width: 100%;
     font-size: 30px; }
 
 #signin ion-content {
@@ -10043,7 +10045,15 @@ ion-content {
     height: auto;
     background-color: #00a97d; }
   #navbar .title {
+    position: initial;
+    width: 100%;
     font-size: 30px; }
+
+.bar .button.back-button, .bar button.back-button {
+  position: absolute; }
+
+.buttons.buttons-left.header-item {
+  position: absolute; }
 
 #merchant ion-content {
   font-family: myFont !important;
