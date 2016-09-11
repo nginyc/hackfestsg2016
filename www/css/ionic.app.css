@@ -9826,6 +9826,17 @@ a.button {
 ion-content {
   font-family: myFont !important; }
 
+#navbar-2 {
+  color: #f1f1f2;
+  font-family: myFont; }
+  #navbar-2 ion-header-bar {
+    border: 0;
+    padding-bottom: 10px;
+    height: auto;
+    background-color: #00a97d; }
+  #navbar-2 .title {
+    font-size: 30px; }
+
 #signin ion-content {
   background-image: url("../img/login_background.png");
   background-size: cover;
@@ -10036,7 +10047,22 @@ ion-content {
 
 #merchant ion-content {
   font-family: myFont !important;
-  color: white !important; }
+  text-align: center;
+  width: 100%; }
+
+#merchant #header-shoptext {
+  height: 50px;
+  vertical-align: middle;
+  line-height: 50px;
+  font-size: 38px; }
+
+#merchant .img-card {
+  max-height: 100%;
+  max-width: 100%; }
+
+#merchant .card {
+  margin-bottom: 45px;
+  height: 182px; }
 
 #dashboard .right {
   display: block;
