@@ -7,8 +7,8 @@
             </div>
             <div class="transactions list">
                 <ng-repeat ng-repeat="transaction in transactions">
-                    <a id="{{ getId(transaction.id) }}" ng-if="!transaction.refunded" class="item item-avatar green">
-                        <img ng-src="img/adam.jpg" />
+                    <a id="{{ getId(transaction.id) }}" ng-if="!transaction.refunded" class="item card item-avatar green">
+                        <img ng-src="img/profile_picture.jpg" />
                         <div class="name">{{ transaction.user_name }}</div>
                         <div class="date">{{ getDateTime(transaction.timestamp)  | date : 'shortTime' }}</div>
                         <div class="right">

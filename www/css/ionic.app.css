@@ -9833,11 +9833,12 @@ ion-content {
     border: 0;
     padding-bottom: 10px;
     height: auto;
-    background-color: #00a97d; }
+    background-color: #00a79d; }
   #navbar-2 .title {
-    position: initial;
-    width: 100%;
-    font-size: 30px; }
+    font-size: 30px;
+    text-align: left; }
+  #navbar-2 .button.button-icon.ion-navicon {
+    color: white; }
 
 #signin ion-content {
   background-image: url("../img/login_background.png");
@@ -9882,7 +9883,7 @@ ion-content {
 
 #signin .login-btn {
   color: #f1f1f2;
-  background-color: #00a97d; }
+  background-color: #00a79d; }
 
 #signin .fb-btn {
   color: #f1f1f2;
@@ -9910,7 +9911,7 @@ ion-content {
   background-position: center center; }
 
 #home .profile-pic {
-  background-image: url("../img/profile_picture.jpeg");
+  background-image: url("../img/profile_picture.jpg");
   display: inline-block;
   width: 75px;
   height: 75px;
@@ -9976,10 +9977,10 @@ ion-content {
       font-size: 136px; }
 
 #input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
-  height: 100px; }
+  height: 80px; }
 
 #input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-  line-height: 90px; }
+  line-height: 80px; }
 
 #input .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
   font-size: 56px;
@@ -9988,7 +9989,7 @@ ion-content {
   color: black; }
 
 #input .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-  line-height: 90px;
+  line-height: 80px;
   margin-top: 0;
   font-family: myFont;
   font-size: 56px;
@@ -10007,10 +10008,10 @@ ion-content {
       font-size: 136px; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
-  height: 90px; }
+  height: 80px; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-  line-height: 90px; }
+  line-height: 80px; }
 
 #payment .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
   font-size: 56px;
@@ -10019,7 +10020,7 @@ ion-content {
   color: black; }
 
 #payment .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-  line-height: 90px;
+  line-height: 80px;
   margin-top: 0;
   font-family: myFont;
   font-size: 56px;
@@ -10029,7 +10030,7 @@ ion-content {
   text-transform: uppercase;
   color: #f1f1f2;
   text-align: left;
-  font-size: 50px;
+  font-size: 40px;
   font-family: myFont;
   padding-bottom: 10px;
   border-bottom: 1px solid #f1f1f2;
@@ -10043,16 +10044,14 @@ ion-content {
     border: 0;
     padding-bottom: 10px;
     height: auto;
-    background-color: #00a97d; }
+    background-color: #00a79d; }
   #navbar .title {
     position: initial;
     width: 100%;
-    font-size: 30px; }
+    font-size: 30px;
+    text-align: center; }
 
 .bar .button.back-button, .bar button.back-button {
-  position: absolute; }
-
-.buttons.buttons-left.header-item {
   position: absolute; }
 
 #merchant ion-content {
@@ -10094,7 +10093,7 @@ ion-content {
   position: relative; }
 
 #dashboard .green {
-  background-color: #00a97d; }
+  background-color: #00a79d; }
 
 #dashboard .red {
   background-color: #ef4036; }
@@ -10105,7 +10104,7 @@ ion-content {
   position: relative; }
 
 #dashboard .balance {
-  font-size: 65px;
+  font-size: 60px;
   padding-left: 25px;
   text-align: center; }
 
@@ -10122,7 +10121,8 @@ ion-content {
   font-family: myFont;
   color: #f1f1f2; }
   #dashboard .transactions .name {
-    font-size: 30px; }
+    font-size: 30px;
+    padding-top: 3px; }
   #dashboard .transactions .date {
     padding-top: 10px;
     font-size: 20px;
@@ -10135,15 +10135,42 @@ ion-content {
   #dashboard .transactions .price {
     font-size: 40px;
     line-height: normal;
-    font-family: myNeue; }
+    font-family: myNeue;
+    padding-top: 3px; }
   #dashboard .transactions .item {
     padding: 10px;
     padding-left: 75px;
     padding-bottom: 30px;
     border: 0px solid black;
+    margin-top: 5px;
+    margin-bottom: 5px;
     -webkit-transition: all 1.0s ease-in-out;
     -moz-transition: all 1.0s ease-in-out;
     -o-transition: all 1.0s ease-in-out;
     transition: all 1.0s ease-in-out; }
     #dashboard .transactions .item.new {
       border: 5px solid black; }
+
+.paymentPopup .popup-head {
+  background-color: #00a79d; }
+  .paymentPopup .popup-head h3 {
+    font-family: myFont;
+    font-size: 40px;
+    color: #f1f1f2; }
+
+.paymentPopup .text {
+  font-family: myFont;
+  font-size: 30px;
+  text-align: center; }
+
+.paymentPopup .price {
+  font-family: myNeue;
+  font-size: 50px;
+  line-height: normal;
+  padding: 15px;
+  text-align: center; }
+
+.paymentPopup button {
+  padding: 0;
+  background-color: #00a79d;
+  color: #f1f1f2; }

@@ -31,10 +31,18 @@
             $scope.data = data;
             $state.go('app.home');
 
-            $ionicPopup.alert({
-                title: "Transaction successful",
-                subTitle: "Sent $" + data.transaction.amount + " to " + data.merchant.name
+
+            $localStorage.set('merchant_name', data.merchant.name);
+            $localStorage.set('amount', data.transaction.amount);
+            $ionicPopup.show({
+                title: data.merchant.name,
+                cssClass: "paymentPopup",
+                template: "<div class='text'>You have sent:</div><div class='price'>$" + parseFloat(data.transaction.amount).toFixed(2)  + "</div>",
+                buttons: [
+                  { text: 'Ok' }
+                ]
             });
+
         }).catch(function (error) {
             $ionicPopup.alert({
                 title: "Transaction failed",
@@ -69,7 +77,9 @@
         rightButton: {
             html: 'Pay',
             action: function () {
-               $scope.pay();
+               if ($scope.numbers > 0) {
+                    $scope.pay();
+               }
             }
         }
     }

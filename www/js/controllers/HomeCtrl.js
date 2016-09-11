@@ -1,11 +1,13 @@
 ﻿app.controller('HomeCtrl', function ($scope, $firebaseApp, $state, $user, $localStorage, $ionicPopup, $location, $merchants, $QRScanner, $ionicHistory) {
 
+   
+
     if (!$user.isLoggedIn()) {
         $state.go('signin');
     }
 
     $scope.$on("$ionicView.afterEnter", function () {
-        //$ionicHistory.clearHistory();
+        //$ionicHistory.cl\earHistory();
     });
 
     $scope.user = $user;
@@ -14,10 +16,14 @@
 
     
     $scope.openReceipt = function () {
-        if($scope.data != null) {
-                $ionicPopup.alert({
-                title: "Transaction successful",
-                subTitle: "Sent $" + $scope.data.transaction.amount + " to " + $scope.data.merchant.name
+        if ($localStorage.get('merchant_name') != null) {
+            $ionicPopup.show({
+                title: $localStorage.get('merchant_name'),
+                cssClass: "paymentPopup",
+                template: "<div class='text'>You have sent:</div><div class='price'>$" + parseFloat($localStorage.get('amount')).toFixed(2) + "</div>",
+                buttons: [
+                  { text: 'Ok' }
+                ]
             });
         }
     };

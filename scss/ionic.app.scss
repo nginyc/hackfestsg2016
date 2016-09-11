@@ -22,7 +22,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 @import "www/lib/ionic/scss/ionic";
 
 $text-color: #f1f1f2;
-$background-color: #00a97d;
+$background-color: #00a79d;
 $red-color: #ef4036;
 
 @font-face {
@@ -43,7 +43,7 @@ ion-content {
 #navbar-2 {
     color: $text-color;
     font-family: myFont;
-
+     
     ion-header-bar {
         border: 0;
         padding-bottom: 10px;
@@ -52,9 +52,12 @@ ion-content {
     }
 
     .title {
-        position: initial;
-        width: 100%;
         font-size: 30px;
+        text-align: left;
+    }
+
+    .button.button-icon.ion-navicon {
+        color: white;
     }
 }
 
@@ -146,7 +149,7 @@ ion-content {
     }
 
     .profile-pic {
-        background-image: url('../img/profile_picture.jpeg');
+        background-image: url('../img/profile_picture.jpg');
         display: inline-block;
         width: 75px;
         height: 75px;
@@ -227,11 +230,11 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
-        height: 100px;
+        height: 80px;
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-        line-height: 90px;
+        line-height: 80px;
     }
 
     .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
@@ -242,7 +245,7 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-        line-height: 90px;
+        line-height: 80px;
         margin-top: 0;
         font-family: myFont;
         font-size: 56px;
@@ -270,11 +273,11 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper {
-        height: 90px;
+        height: 80px;
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key {
-        line-height: 90px;
+        line-height: 80px;
     }
 
     .digit-keyboard.no-letters .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-number {
@@ -285,7 +288,7 @@ ion-content {
     }
 
     .digit-keyboard .digit-keyboard-row .digit-keyboard-key-wrapper .digit-keyboard-key .digit-keyboard-key-action {
-        line-height: 90px;
+        line-height: 80px;
         margin-top: 0;
         font-family: myFont;
         font-size: 56px;
@@ -295,8 +298,8 @@ ion-content {
     .balance {
         text-transform: uppercase;
         color: $text-color;
-        text-align: left;
-        font-size: 50px;
+        text-align: left;    
+        font-size: 40px;
         font-family: myFont;
         padding-bottom: 10px;
         border-bottom: 1px solid $text-color;
@@ -320,15 +323,11 @@ ion-content {
         position: initial;
         width: 100%;
         font-size: 30px;
+        text-align: center;
     }
 }
 
 .bar .button.back-button, .bar button.back-button {
-    position: absolute;
-}
-
-
-.buttons.buttons-left.header-item {
     position: absolute;
 }
 
@@ -396,7 +395,7 @@ ion-content {
     }
 
     .balance {
-        font-size: 65px;
+        font-size: 60px;
         padding-left: 25px;
         text-align: center;
     }
@@ -417,6 +416,7 @@ ion-content {
 
         .name {
             font-size: 30px;
+            padding-top: 3px;
         }
 
         .date {
@@ -436,13 +436,17 @@ ion-content {
             font-size: 40px;
             line-height: normal;
             font-family: myNeue;
+            padding-top: 3px;
         }
 
         .item {
             padding: 10px;
             padding-left: 75px;
             padding-bottom: 30px;
-            border: 0px solid black;
+            border: 0px solid black;    
+            margin-top: 5px;
+            margin-bottom: 5px;
+
             -webkit-transition: all 1.0s ease-in-out;
             -moz-transition: all 1.0s ease-in-out;
             -o-transition: all 1.0s ease-in-out;
@@ -453,4 +457,37 @@ ion-content {
             }
         }
     }
+}
+
+.paymentPopup {
+    .popup-head {
+        background-color: $background-color;
+        h3 {
+            font-family: myFont;
+            font-size: 40px;
+            color: $text-color;
+        }
+    }
+
+    .text {
+        font-family: myFont;
+        font-size: 30px;
+        text-align: center;
+    }
+
+     .price {
+        font-family: myNeue;
+        font-size: 50px;
+        line-height: normal;
+        padding: 15px;
+        text-align: center;
+    }
+
+     button {
+        padding: 0;
+        background-color: $background-color;
+        color: $text-color;
+     }
+
+
 }
