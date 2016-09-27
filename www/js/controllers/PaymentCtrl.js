@@ -1,4 +1,4 @@
-﻿app.controller('PaymentCtrl', function ($scope, $firebaseApp, $ionicPopup, $state, $user, $merchants, $localStorage) {
+﻿app.controller('PaymentCtrl', function ($scope, $ionicBackdrop, $firebaseApp, $ionicPopup, $state, $user, $merchants, $localStorage) {
 
     if (!$user.isLoggedIn()) {
         $state.go('signin');
@@ -25,15 +25,17 @@
     }
 
     $scope.pay = function () {
+        $ionicBackdrop.retain();
         $user.createTransaction(merchant.id, $scope.numbers / 100)
         .then(function (data) {
             $localStorage.set('receipt', data);
             $scope.data = data;
             $state.go('app.home');
 
-
             $localStorage.set('merchant_name', data.merchant.name);
             $localStorage.set('amount', data.transaction.amount);
+
+            $ionicBackdrop.release();
             $ionicPopup.show({
                 title: data.merchant.name,
                 cssClass: "paymentPopup",
@@ -44,6 +46,7 @@
             });
 
         }).catch(function (error) {
+            $ionicBackdrop.release();
             $ionicPopup.alert({
                 title: "Transaction failed",
                 subTitle: error

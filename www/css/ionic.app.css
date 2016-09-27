@@ -9860,7 +9860,7 @@ ion-content {
   font-size: 70px; }
 
 #signin .Sub-Text {
-  font-size: 30px; }
+  font-size: 25px; }
 
 #signin form {
   margin-top: 0px;
@@ -10155,7 +10155,7 @@ ion-content {
   background-color: #00a79d; }
   .paymentPopup .popup-head h3 {
     font-family: myFont;
-    font-size: 40px;
+    font-size: 30px;
     color: #f1f1f2; }
 
 .paymentPopup .text {
